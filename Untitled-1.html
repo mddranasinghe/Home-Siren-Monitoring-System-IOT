@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-         .container {
+        .container {
             width: 60%;
             height: 70%;
             margin: 0 auto;
@@ -21,42 +21,38 @@
             margin-right: auto;
         }
         
-        .triangle {
-            width: 0;
-            height: 0;
-            border-left: 3vw solid transparent;
-            border-right: 3vw solid transparent;
-            border-bottom: 6vw solid green; /* Height of the triangle is approximately 35.5% of viewport height */
+        .siren {
+            width: 5%;
+            height:5%;
+            border-radius: 50%;
+            background-color: red;
             position: absolute;
-            
-    
         }
+
         .siren1 {
-            top: 8%;
-            left: 22%;
-            transform: rotate(-30deg);
-    
+            top: 20%;
+            left: 20%;
+            background-color: green;
         }
 
         .siren2 {
-            top: 7%;
-            right: 13%;
-            transform: rotate(30deg);
+            top: 20%;
+            right: 15%;
         }
 
         .siren3 {
-            bottom: 7%;
-            left: 19%;
-            transform: rotate(210deg);
+            bottom: 20%;
+            left: 20%;
         }
 
         .siren4 {
-            bottom: 12%;
-            right:10%;
-            transform: rotate(148deg);
+            bottom: 20%;
+            right:15%;
         }
 
-       
+
+
+        
     </style>
 </head>
 <body>
@@ -65,17 +61,11 @@
         <td style="text-align: center; width:100%;"><h2 >Siren Monitoring Systems</h2></td>
       </tr></table>
     <div class="container">
-       
-        <div class="container">
-            
-
-                <div class="triangle siren1"></div>
-                <div class="triangle siren2"></div>
-                <div class="triangle siren3" ></div>
-                <div class="triangle siren4"></div>
-           
-            <img src="img2.png">
-        </div>
+        <div class="siren siren1"></div>
+        <div class="siren siren2"></div>
+        <div class="siren siren3"></div>
+        <div class="siren siren4"></div>
+        <img src="img2.png">
     </div>
 </body>
 </html>
