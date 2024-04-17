@@ -6,66 +6,98 @@
     <title>Document</title>
     <style>
         .container {
-            width: 60%;
+            width: 90%;
             height: 70%;
             margin: 0 auto;
             position: relative;
-           
         }
 
         .container img {
-            width: 90%;
+            width: 100%;
             height: 80%;
             display: block;
             margin-left: auto;
             margin-right: auto;
         }
-        
-        .siren {
-            width: 5%;
-            height:5%;
-            border-radius: 50%;
-            background-color: red;
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 8vw solid transparent;
+            border-right: 8vw solid transparent;
+            border-bottom: 12vw solid green;
             position: absolute;
         }
 
         .siren1 {
-            top: 20%;
-            left: 20%;
-            background-color: green;
+            top: 8%;
+            left: 22%;
+            transform: rotate(-30deg);
         }
 
         .siren2 {
-            top: 20%;
-            right: 15%;
+            top: 7%;
+            right: 13%;
+            transform: rotate(30deg);
         }
 
         .siren3 {
-            bottom: 20%;
-            left: 20%;
+            bottom: 7%;
+            left: 19%;
+            transform: rotate(210deg);
         }
 
         .siren4 {
-            bottom: 20%;
-            right:15%;
+            bottom: 12%;
+            right: 10%;
+            transform: rotate(148deg);
         }
-
-
-
-        
     </style>
 </head>
 <body>
-    <table style="width: 100%;"><tr>
-        <td><a href="../index.html"><img src="less-than.png" style="width: 30px; height: 35px;"></a></td>
-        <td style="text-align: center; width:100%;"><h2 >Siren Monitoring Systems</h2></td>
-      </tr></table>
+    <table style="width: 100%;">
+        <tr>
+            <td><a href="../index.html"><img src="less-than.png" style="width: 30px; height: 35px;"></a></td>
+            <td style="text-align: center; width:100%;"><h2 >Siren Monitoring Systems</h2></td>
+        </tr>
+    </table>
     <div class="container">
-        <div class="siren siren1"></div>
-        <div class="siren siren2"></div>
-        <div class="siren siren3"></div>
-        <div class="siren siren4"></div>
-        <img src="img2.png">
+   
+        <div class="container">
+            <canvas id="myCanvas" width="100%" height="100%" style="border:1px solid #000000;">
+                Sorry, your browser does not support canvas.
+            </canvas>
+            <div class="triangle siren1"></div>
+            <div class="triangle siren2"></div>
+            <div class="triangle siren3"></div>
+            <div class="triangle siren4"></div>
+            <img id="image" src="img2.png">
+        </div>
     </div>
+
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Function to draw a circle around the image
+        function drawCircle() {
+            // Get the image element
+            const image = document.getElementById("image");
+            // Calculate the center of the image
+            const centerX = image.offsetLeft + image.width / 2;
+            const centerY = image.offsetTop + image.height / 2;
+            // Calculate the radius of the circle
+            const radius = Math.min(image.width, image.height) / 2;
+            // Draw the circle
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "blue";
+            ctx.stroke();
+        }
+
+        // Call drawCircle after the image is loaded
+        document.getElementById("image").onload = drawCircle;
+    </script>
 </body>
 </html>
