@@ -6,23 +6,54 @@
     <title>Document</title>
     <style>
         .container {
-            width: 90%;
-            height: 100%;
+        margin-top: 0px;
+            width: 80%;
+           
             margin: 0 auto;
             position: relative;
+          
+          
+        }
+
+        .container #image {
+            width: 100%;
+            height: 0%;
+            display: block;
+           
+        
+            border: 20px solid #BBCDD9;
+  border-radius:50%;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+           
+            position: absolute;
+        }
+
+        .siren1 {
+            right:41%; 
+            top:-7%;
+     
+        }
+
+        .siren2 {
+            bottom: 50%;
+            right: -10%;
        
         }
 
-        .container img {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+        .siren3 {
+            bottom: 50%;
+            left: -6%;
+            
         }
 
-        #myCanvas {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+        .siren4 {
+            bottom:-7%;
+            right: 41%;
+           
         }
     </style>
 </head>
@@ -30,45 +61,23 @@
     <table style="width: 100%;">
         <tr>
             <td><a href="../index.html"><img src="less-than.png" style="width: 30px; height: 35px;"></a></td>
-            <td style="text-align: center; width:100%;"><h2>Siren Monitoring Systems</h2></td>
+            <td style="text-align: center; width:100%;"><h2 >Siren Monitoring Systems</h2></td>
         </tr>
-    </table>
+    </table><br><br><br>
     <div class="container">
-        <canvas id="myCanvas" width="700" height="700" style="border:0px solid #000000;"></canvas>
+   
+        <div class="container">
+            <img src="alarm.svg" class="triangle siren1" style="width: 10vw; height: 10vw; ">
+            <img src="alarm.svg" class="triangle siren2" style="width: 10vw; height: 10vw;">
+            <img src="alarm.svg" class="triangle siren3" style="width: 10vw; height: 10vw;">
+            <img src="alarm.svg" class="triangle siren4" style="width: 10vw; height: 10vw;">
+        
+            <img id="image" src="i.jpg">
+        </div>
     </div>
 
     <script>
-        const canvas = document.getElementById("myCanvas");
-        const ctx = canvas.getContext("2d");
-        const image = document.createElement("img");
-        image.src = "img2.png";
-
-        // Function to draw the image within a circle
-        function drawCircleImage() {
-            // Calculate the center and radius of the circle
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            const radius = Math.min(canvas.width, canvas.height) / 2;
-
-            // Set border color
-            ctx.strokeStyle = "#000000"; // Black color
-
-            // Draw the circle
-            ctx.beginPath();
-            ctx.arc(380, 350, 280, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Clip the canvas to create a circular clipping region
-         
-
-            // Draw the image
-            ctx.drawImage(image, centerX - radius, centerY - radius, radius * 2, radius * 2);
-        }
-
-        // Call drawCircleImage after the image is loaded
-        image.onload = function() {
-            drawCircleImage();
-        };
+     
     </script>
 </body>
 </html>
