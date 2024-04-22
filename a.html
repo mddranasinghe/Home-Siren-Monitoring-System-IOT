@@ -6,9 +6,9 @@
     <title>Document</title>
     <style>
         /* Your CSS styles here */
-        .container {
+        .container2 {
             position: relative;
-            width: 70%;
+            width: 80%;
             margin: 0 auto;
             background-color: rgb(64, 67, 66);
         }
@@ -19,6 +19,12 @@
             display: block;
             margin: 0 auto;
             position: absolute;
+            border-style: solid;
+            padding: 2%;
+       border-width: 0;
+            border-radius: 50px;
+            background-color: yellow;
+          
         }
     </style>
 </head>
@@ -53,7 +59,6 @@
             s4.204,15.889,12.379,17.227c8.58,1.405,16.186,5.57,21.994,12.045c5.746,6.406,9.057,14.333,9.575,22.923
             c0.48,7.962,7.087,14.097,14.959,14.097c0.304,0,0.609-0.009,0.917-0.027c8.27-0.499,14.568-7.606,14.069-15.876
             C291.908,111.27,285.803,96.657,275.636,85.321z"/>
-            <path fill="none" stroke="rgb(64, 67, 66)" stroke-width="20" d="M51.038,51.038l243.938,243.937 M51.038,294.975L294.975,51.038"/>
 
         </g>
         </symbol>
@@ -61,16 +66,10 @@
     </svg>
 
     <!-- Your HTML content -->
-    <div class="container">
-        <!-- Use the alarm icon -->
-        <svg class="siren1 home" fill="gray"onclick="actionClose('s1')">
-            <use xlink:href="#alarm-icon"></use>
-        </svg>
-        <!-- Add more uses of the icon as needed -->
-    </div>
+
     <div class="container2">
         <!-- Use the alarm icon -->
-        <svg class="siren2 home" fill="red" onclick="actionClose('s2')">
+        <svg class="siren2 home" fill="white" onclick="actionClose('s2')" >
             <use xlink:href="#alarm-icon"></use>
         </svg>
         <!-- Add more uses of the icon as needed -->

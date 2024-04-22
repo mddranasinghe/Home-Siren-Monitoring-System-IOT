@@ -50,11 +50,18 @@
         }
 
         .home {
-            width: 10vw;
-            height: 10vw;
+            width: 5vw;
+            height: 8vw;
             display: block;
             margin: 0 auto;
             position: absolute;
+            border-style: solid;
+            padding: 1%;
+            padding-left: 3%;
+            padding-right: 3%;
+            border-radius: 20px;
+            border-width: .5vw;
+
         }
         .dis1{position: absolute;left:62%}
         .dis2{position: absolute;top:33%;right:-62%;}
@@ -118,7 +125,7 @@ color:blue;
     </table>
 
 
-    <svg  height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" display="none">        <!-- Alarm Icon -->
+    <svg  height="80px" width="80px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" display="none">        <!-- Alarm Icon -->
         <symbol id="alarm-icon" viewBox="0 0 346.013 346.013">
             
 <g>
@@ -148,11 +155,10 @@ color:blue;
             s4.204,15.889,12.379,17.227c8.58,1.405,16.186,5.57,21.994,12.045c5.746,6.406,9.057,14.333,9.575,22.923
             c0.48,7.962,7.087,14.097,14.959,14.097c0.304,0,0.609-0.009,0.917-0.027c8.27-0.499,14.568-7.606,14.069-15.876
             C291.908,111.27,285.803,96.657,275.636,85.321z"/>
-            <path fill="none" stroke="rgb(64, 67, 66)" stroke-width="20" d="M51.038,51.038l243.938,243.937 M51.038,294.975L294.975,51.038"/>
 
         </g>
+        
         </symbol>
-        <!-- Add more symbols for other icons if needed -->
     </svg>
 
 
@@ -161,25 +167,39 @@ color:blue;
 
     <div class="container2">
     <div class="container">
-        <div > <svg class="siren1 home" id='s1' fill="green"onclick="actionClose('s1',)">
+        <img id="image" src="i.jpg">
+        <div > <svg class="siren1 home" id='s1' fill="green"onclick="actionClose('s1','m1')">
+            <use xlink:href="#alarm-icon"></use>
+
+        </svg>
+      <div class="siren1 "><img src="unm.svg" style="width: 5vw; height: 5vw; margin-left:-36%; padding: 36.5%; display: none; margin-top: 1.5%;  border-style: solid;border-color:gray; border-width: .5vw;
+      
+        border-radius: 20px;" id="m1"></div>
+    </div>
+        <div > <svg class="siren2 home" id='s2' fill="green"onclick="actionClose('s2','m2')">
             <use xlink:href="#alarm-icon"></use>
         </svg>
+        <div class="siren2 "><img src="unm.svg" style="width: 5vw; height: 5vw; margin-left:0%; padding: 36.5%; display: none; margin-top: 1.5%;  border-style: solid;border-color:gray; border-width: .5vw;
+      
+            border-radius: 20px;" id="m2"></div>
     </div>
-        <div > <svg class="siren2 home" id='s2' fill="green"onclick="actionClose('s2')">
+        <div> <svg class="siren3 home" id='s3' fill="green"onclick="actionClose('s3','m3')">
+            <use xlink:href="#alarm-icon"></use>
+        </svg>
+        <div class="siren3 "><img src="unm.svg" style="width: 5vw; height: 5vw; margin-left:-36%; padding: 36.5%; display: none; margin-top: 1.5%;  border-style: solid;border-color:gray; border-width: .5vw;
+      
+            border-radius: 20px;" id="m3"></div>
+    </div>
+        <div> <svg class="siren4 home" id='s4' fill="green"onclick="actionClose('s4','m4')">
             <use xlink:href="#alarm-icon"></use>
         </svg>
 
-    </div>
-        <div> <svg class="siren3 home" id='s3' fill="green"onclick="actionClose('s3')">
-            <use xlink:href="#alarm-icon"></use>
-        </svg>
-    </div>
-        <div> <svg class="siren4 home" id='s4' fill="green"onclick="actionClose('s4')">
-            <use xlink:href="#alarm-icon"></use>
-        </svg>
+        <div class="siren4 "><img src="unm.svg" style="width: 5vw; height: 5vw; margin-left:-36%; padding: 36.5%; display: none; margin-top: 1.5%;  border-style: solid;border-color:gray; border-width: .5vw;
+      
+            border-radius: 20px;" id="m4"></div>
     </div>
       
-        <img id="image" src="i.jpg">
+       
     </div></div>
 
 
@@ -198,8 +218,8 @@ color:blue;
     
     <script>
 
-var payload
-  function actionClose(id1){
+var payload;
+  function actionClose(id1,img){
     var checkbox = document.getElementById(id1)
     if (!checkbox.checked) {
         document.getElementById('popup').style.display = 'block';
@@ -212,14 +232,16 @@ var payload
       payload="1";
     }
     id1Value=id1;
-    console.log(payload);
+    idimg=img;
+   console.log('ddd'+img);
   }
 document.getElementById('yesButton').addEventListener('click', function() {
  
     document.getElementById('popup').style.display = 'none';
     document.getElementById("overlay").style.display = "none";
     if (id1Value) {
-        document.getElementById(id1Value).style.fill = 'gray'; 
+        document.getElementById(id1Value).style.display = "none"; 
+        document.getElementById(idimg).style.display = "inline"; 
 
       //  payload="0";
     }
