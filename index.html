@@ -10,7 +10,7 @@
             position: relative;
             width: 70%; /* Adjust container width as needed */
             margin: 0 auto;
-          /*  border: 15px solid #BBCDD9;
+          /* border: 15px solid #BBCDD9;
             border-radius:0 ;*/
   
             
@@ -18,28 +18,30 @@
 
         #image {
             width: 100%;
-     
-          
             position:relative;
           
         }
 
         .siren1 {
          
-          
+            border-style: solid; width: 8vw; height: 8vw; position: absolute; left:51%; top:5%;
             transform: translateX(-50%);
         }
 
         .siren2 {
+        
+            border-style: solid; width: 8vw; height: 8vw; position: absolute; left:98%; top:33.5%;
             transform: translateX(-50%);
        
         }
         .siren3 {
+            border-style: solid; width: 8vw; height: 8vw; position: absolute; left:46%; top:80%;
             transform: translateX(-50%);
       
         }
 
         .siren4 {
+            border-style: solid; width: 8vw; height: 8vw; position: absolute; left:1.5%; top:35%;
             transform: translateX(-50%);
          
           
@@ -165,26 +167,26 @@ color:blue;
    
     <div class="container">
         <img id="image" src="i.jpg">
-        <div style="border-style: solid; width: 8vw; height: 8vw; position: absolute; left:51%; top:5%;" class="siren1 home">
+        <div style="" class="siren1 home">
             <svg style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 80%; display:non " id='s1' fill="green" onclick="actionClose('s1','m1')">
                 <use xlink:href="#alarm-icon"></use>
             </svg>
             <img src="unm.svg" style="position: absolute; width: 5vw; height: 5vw; top: 50%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m1"></div>
            
-            <div style="border-style: solid; width: 8vw; height: 8vw; position: absolute; left:98%; top:33.5%;" class="siren2 home">
+            <div style="" class="siren2 home">
                 <svg style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 80%; display:non " id='s2' fill="green" onclick="actionClose('s2','m2')">
                     <use xlink:href="#alarm-icon"></use>
                 </svg>
                 <img src="unm.svg" style="position: absolute; width: 5vw; height: 5vw; top: 50%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m2"></div>
    
 
-            <div style="border-style: solid; width: 8vw; height: 8vw; position: absolute; left:46%; top:80%;" class="siren3 home">
+            <div style="" class="siren3 home">
                 <svg style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 80%; display:non " id='s3' fill="green" onclick="actionClose('s3','m3')">
                     <use xlink:href="#alarm-icon"></use>
                 </svg>
                 <img src="unm.svg" style="position: absolute; width: 5vw; height: 5vw; top: 50%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m3"></div>
        
-                <div style="border-style: solid; width: 8vw; height: 8vw; position: absolute; left:1.5%; top:35%;" class="siren4 home">
+                <div style="" class="siren4 home">
                     <svg style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 80%; display:non " id='s4' fill="green" onclick="actionClose('s4','m4')">
                         <use xlink:href="#alarm-icon"></use>
                     </svg>
@@ -194,36 +196,6 @@ color:blue;
               
        
             </div>
-        <!--
-    </div>
-        <div > <svg class="siren2 home" id='s2' fill="green"onclick="actionClose('s2','m2')">
-            <use xlink:href="#alarm-icon"></use>
-        </svg>
-        <div class="siren2 "><img src="unm.svg" style="width: 5vw; height: 5vw; margin-left:0%; padding: 36.5%; display: none; margin-bottom: -5%;  border-style: solid;border-color:gray; border-width: .5vw;
-      
-            border-radius: 2vw;" id="m2"></div>
-    </div>
-        <div> <svg class="siren3 home" id='s3' fill="green"onclick="actionClose('s3','m3')">
-            <use xlink:href="#alarm-icon"></use>
-        </svg>
-        <div class="siren3 "><img src="unm.svg" style="width: 5vw; height: 5vw; margin-left:-68.5%; padding: 36%; display: none; margin-bottom: -5%;  border-style: solid;border-color:gray; border-width: .5vw;
-      
-            border-radius: 2vw;" id="m3"></div>
-    </div>
-        <div> <svg class="siren4 home" id='s4' fill="green"onclick="actionClose('s4','m4')">
-            <use xlink:href="#alarm-icon"></use>
-        </svg>
-
-        <div class="siren4 "><img src="unm.svg" style=" width: 5vw; height: 5vw; margin-left:-39%; padding: 36.5%; display: none; margin-bottom:-23%;  border-style: solid; border-color:gray; border-width: .5vw;
-      
-            border-radius: 2vw;" id="m4"></div>
-    </div>
-      
-       
-    </div>-->
-
-
-
     <div id="popup" class="popup">
         <div style="padding: 20px;">   <div class="popup-content">
           <p>Are you sure you want to disarmed this siren?</p>  </div></div>
