@@ -168,6 +168,27 @@ color:blue;
 .topic {flex: 1;} 
 .option { margin-left: center;} /* Push to the right */
 
+
+
+.popup2 {
+    width: 80%;
+  display: none; 
+  position: fixed;
+  top: 90%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  border-radius: 10px 10px;
+  background-color:#7D63BE;
+  padding: 12px 12px 12px 12px;
+  z-index: 9999; 
+  color: white;
+
+ 
+}
+
+
+.popup2-content {text-align: center; margin-bottom:0%; }
+
     </style>
 </head>
 <body>
@@ -280,7 +301,12 @@ color:blue;
       </div>
       <div id="overlay"></div>
 
+      <div id="popup2" class="popup2" >
+        <div class="popup2-content" >
+          <p style=" font-size: 12px;">siren.................................!</p>
 
+        </div>
+      </div>
 
     
     <script>
@@ -313,6 +339,7 @@ document.getElementById('yesButton').addEventListener('click', function() {
   document.getElementById(('m' + i)).style.display = "inline";
 }
   }
+  openPopup()
 });
 
 document.getElementById('noButton').addEventListener('click', function() {
@@ -346,14 +373,24 @@ function acAll(id)
   
     document.getElementById(('s' + i)).style.display = "inline"; 
     document.getElementById(('m' + i)).style.display = "none";
+
+    openPopup();
 }
 
     }
-   
-  
 
 }
 
+// Function to opne the popup
+function openPopup() {
+  var popup = document.getElementById("popup2");
+  popup.style.display = "block";
+
+  setTimeout(function() {
+    popup.style.display = "none";
+  }, 1300); 
+  
+}
 
     </script>
 </body>
