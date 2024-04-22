@@ -110,6 +110,63 @@ color:blue;
   cursor: pointer;
 }
 
+/* toggle botton..............................*/
+.toggle { position: relative; box-sizing: border-box;}
+.toggle input[type="checkbox"] {
+  position: absolute;
+  left: 2px;
+  top: 0;
+ /* z-index: 10;*/
+  width: 85%;
+  height: 70%;
+  cursor: pointer;
+  opacity: 0;}
+
+.toggle label {
+  position: relative;
+  display: block;
+  align-items: center;
+  box-sizing: border-box;}
+
+.toggle label:before {
+  content: '';
+  width: 50px;
+  height: 22px;
+  background: #ccc;
+  position: relative;
+  display: inline-block;
+  border-radius: 46px;
+  box-sizing: border-box;
+  transition: 0.2s ease-in;
+}
+.toggle label:after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  left: 2px;
+  top: 2px;
+  z-index: 2;
+  background: #fff;
+  box-sizing: border-box;
+  transition: 0.2s ease-in;
+}
+.toggle input[type="checkbox"]:checked + label:before { background: #4BD865;}
+.toggle input[type="checkbox"]:checked + label:after {left: 30px;}
+
+
+
+.Ac,.Al { width:100%;box-shadow: 0.5px 0.5px 3px 0.5px gray; border-radius: 3px 3px;}
+.status_box {
+        padding-left: 20px;
+        padding-right: 20px;
+        background-color:white;
+        display: flex; /* Use flexbox to align children */
+         align-items: center; }
+
+.topic {flex: 1;} 
+.option { margin-left: center;} /* Push to the right */
 
     </style>
 </head>
@@ -169,7 +226,7 @@ color:blue;
             <svg style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); height: 70%; display:non " id='s1' fill="green" onclick="actionClose('s1','m1')">
                 <use xlink:href="#alarm-icon"></use>
             </svg>
-            <img src="unm.svg" style="position: absolute; width: 5vw; height: 5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m1">
+            <img src="unm.svg" style="position: absolute; width: 6.5vw; height: 6.5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m1">
         
             <div class="dot" id="node/spc/7469308fcf871dad4d4"></div>
         </div>
@@ -178,7 +235,7 @@ color:blue;
                 <svg style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 70%; display:non " id='s2' fill="green" onclick="actionClose('s2','m2')">
                     <use xlink:href="#alarm-icon"></use>
                 </svg>
-                <img src="unm.svg" style="position: absolute; width: 5vw; height: 5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m2">
+                <img src="unm.svg" style="position: absolute; width: 6.5vw; height: 6.5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m2">
                 <div class="dot" id="node/spc/7469308fcf871dad4d4"></div>
 
             </div>
@@ -188,7 +245,7 @@ color:blue;
                 <svg style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 70%; display:non " id='s3' fill="green" onclick="actionClose('s3','m3')">
                     <use xlink:href="#alarm-icon"></use>
                 </svg>
-                <img src="unm.svg" style="position: absolute; width: 5vw; height: 5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m3">
+                <img src="unm.svg" style="position: absolute; width: 6.5vw; height: 6.5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m3">
                 <div class="dot" id="node/spc/7469308fcf871dad4d4"></div>
             </div>
        
@@ -196,13 +253,23 @@ color:blue;
                     <svg style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 70%; display:non " id='s4' fill="green" onclick="actionClose('s4','m4')">
                         <use xlink:href="#alarm-icon"></use>
                     </svg>
-                    <img src="unm.svg" style="position: absolute; width: 5vw; height: 5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m4">
+                    <img src="unm.svg" style="position: absolute; width: 6.5vw; height: 6.5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m4">
                     <div class="dot" id="node/spc/7469308fcf871dad4d4"></div>
                 </div>
+    
        
-
-              
-       
+            </div>
+<br><br>
+            <div style="width: 95%; margin: 0 auto;">
+                
+                <div class="Al">
+                <div class="status_box">
+                    <div class="topic"><p>Sirenes Action</p></div>
+                    <div class="option">  <div class="toggle">
+                    <input type="checkbox" id="S_Ac" onclick="acAll('S_Ac')" ><label for="S_Ac" ></label></div> 
+                 </div>
+                </div>
+          
             </div>
     <div id="popup" class="popup">
         <div style="padding: 20px;">   <div class="popup-content">
@@ -220,17 +287,12 @@ color:blue;
 
 var payload;
   function actionClose(id1,img){
-    var checkbox = document.getElementById(id1)
-    if (!checkbox.checked) {
+
         document.getElementById('popup').style.display = 'block';
         document.getElementById("overlay").style.display = "block";
-     //   document.getElementById(id1).style.opacity = 0.5;
+    
 
-        
-    }
-    else{
-      payload="1";
-    }
+    
     id1Value=id1;
     idimg=img;
    console.log('ddd'+img);
@@ -239,25 +301,59 @@ document.getElementById('yesButton').addEventListener('click', function() {
  
     document.getElementById('popup').style.display = 'none';
     document.getElementById("overlay").style.display = "none";
-    if (id1Value) {
+    if (id1Value != 'all') {
         document.getElementById(id1Value).style.display = "none"; 
         document.getElementById(idimg).style.display = "inline"; 
-
-      //  payload="0";
     }
-  //  console.log(payload);
+    else if(id1Value === 'all')
+  {
+    for (var i = 1; i < 5; i++) {
+  
+  document.getElementById(('s' + i)).style.display = "none"; 
+  document.getElementById(('m' + i)).style.display = "inline";
+}
+  }
 });
 
 document.getElementById('noButton').addEventListener('click', function() {
 
     document.getElementById('popup').style.display = 'none';
     document.getElementById("overlay").style.display = "none";
-    if (id1Value) {
+    if (id1Value === 'all') {
        // document.getElementById(id1Value).checked = true;
        // payload="1";
     }
-    //console.log(payload);
+    else if(id1Value === 'all')
+  {
+   
+  }
+
 });
+
+function acAll(id)
+{
+
+    var checkbox = document.getElementById(id)
+    if (!checkbox.checked) {
+        document.getElementById('popup').style.display = 'block';
+        document.getElementById("overlay").style.display = "block";
+
+        id1Value='all';
+    }
+    else if(checkbox.checked)
+    {
+        for (var i = 1; i < 5; i++) {
+  
+    document.getElementById(('s' + i)).style.display = "inline"; 
+    document.getElementById(('m' + i)).style.display = "none";
+}
+
+    }
+   
+  
+
+}
+
 
     </script>
 </body>
