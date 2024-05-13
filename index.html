@@ -194,6 +194,13 @@ color:blue;
 
 .popup2-content {text-align: center; margin-bottom:0%; }
 
+.custom-select select {
+    border: 2px solid green; /* Set border color to green */
+    border-radius: 5px; /* Optional: Add border radius */
+    padding: 5px; /* Optional: Add padding */
+}
+
+
     </style>
 </head>
 <body>
@@ -303,8 +310,8 @@ color:blue;
                 </div>
                 <div class="status_box" id="set_timer_time_box">
                   <div class="topic"><p id="label_timer_time" >Disarm Time</p></div>
-                  <div class="option" ><div style=" margin-top:12.6px;margin-bottom: 12.6px;">
-                    <select name="cars" id="cars">
+                  <div class="option" ><div class="custom-select">
+                    <select name="time" id="time">
                       <option value="volvo">10sec</option>
                       <option value="saab">20sec</option>
                       <option value="opel">30sec</option>
@@ -313,7 +320,7 @@ color:blue;
                       <option value="audi">3 min</option>
                       <option value="audi">4 min</option>
                       <option value="audi">5 min</option>
-                    </select><label for="set_timer_time" id="toggleLabel_set_timer_time_mainpump"></label></div> 
+                    </select><label for="set_timer_time" id=""></label></div> 
             
             </div>
           </div>
