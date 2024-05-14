@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-     
+     .container_main{box-shadow: 0.5px 0.5px 3px 0.5px gray; width: 95%; height: 85vw; positio:relative; margin: 0 auto;}
         .container {
-            position: relative;
+            position: absolute;
             width: 70%; /* Adjust container width as needed */
             margin: 0 auto;
           /* border: 15px solid #BBCDD9;
             border-radius:0 ;*/
+            top:13.5%;
+            left:15%;
+            margin-left: 0;
+            margin-right: 0;
 
           
   background-size: cover; /* or contain, depending on your preference */
@@ -49,7 +53,7 @@
        
         }
         .siren3 {
-            border-style: solid; width: 12vw; height: 12vw; position: absolute; left:45.5%; top:79.5%;
+            border-style: solid; width: 12vw; height: 12vw; position: absolute; left:45.5%; top:79.7%;
             border-radius: 2vw;
             border-width: .5vw;
             border-color: gray;
@@ -253,9 +257,10 @@ color:blue;
 
 
 
-
    
-    <div class="container"   style="background-image: url('b.jpg');">
+    <div class="container_main" >
+   
+    <div class="container" >
         <img id="image" src="i.jpg">
         <div style="" class="siren1">
             <svg style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); height: 70%; display:non " id='s1' fill="green" onclick="actionClose('s1','m1')">
@@ -294,6 +299,7 @@ color:blue;
     
        
             </div>
+          </div>
 <br><br>
             <div style="width: 95%; margin: 0 auto;">
                 
