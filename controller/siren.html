@@ -190,7 +190,7 @@ color:blue;
 
 #overlay2,#overlay3 {
   /*   position: fixed;*/
-     display:non;
+     display:none;
      width: 100%;
      height: 100%;
      top: 0;
@@ -680,7 +680,7 @@ document.getElementById('S_Dis').addEventListener('click', function() {
   setTimeout(function() {
   if(stat !== 'online'){
   offlinestatus('none');}
-   }, 2000);
+   }, 1000);
 
 setInterval(connect, 2000);
     </script>
