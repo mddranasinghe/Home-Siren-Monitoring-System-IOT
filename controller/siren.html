@@ -7,16 +7,12 @@
     <script src="../resources/js/paho-mqtt-min.js"></script>
     <script src="../resources/js/connection.js"></script>
     <style>
-      
+        body{margin: 0 auto;}
         .container_main{box-shadow: 0.5px 0.5px 3px 0.5px gray; width: 95%; height: 85vw; position:relative; margin: 0 auto;}
         .container {
             position:relative;
             width: 70%;
             margin: 0 auto;
-          /*border: 15px solid #BBCDD9;
-            border-radius:0 ;
-       
-            left:15%;*/
             top:11%;
             
         }
@@ -216,6 +212,17 @@ color:blue;
 }
 .signal-bars {display: flex; margin: 2px; }
  .bar {width: 3px;margin-right: 1px;background-color: #ccc;}
+  
+ #s1,#s2,#s3,#s4{
+  position: absolute;
+   top: 40%; 
+   left: 50%;
+    transform: translate(-50%, -50%); 
+    height: 70%;
+     display:non ;
+     fill: green;
+  }
+
 
 @media only screen and (min-width: 900px) {
       
@@ -330,7 +337,7 @@ color:blue;
     <div class="container" >
         <img id="image" src="../resources\image\siren\i.jpg">
         <div class="siren1">
-            <svg style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); height: 70%; display:non " id='s1' fill="green" onclick="actionClose('s1','m1')">
+            <svg id='s1' onclick="actionClose('s1','m1')">
                 <use xlink:href="#alarm-icon"></use>
             </svg>
             <img src="../resources\image\siren\unm.svg" style="position: absolute; width: 6.5vw; height: 6.5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m1">
@@ -339,7 +346,7 @@ color:blue;
         </div>
            
             <div  class="siren2">
-                <svg style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 70%; display:non " id='s2' fill="green" onclick="actionClose('s2','m2')">
+                <svg id='s2'  onclick="actionClose('s2','m2')">
                     <use xlink:href="#alarm-icon"></use>
                 </svg>
                 <img src="../resources\image\siren\unm.svg" style="position: absolute; width: 6.5vw; height: 6.5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m2">
@@ -349,7 +356,7 @@ color:blue;
    
 
             <div  class="siren3">
-                <svg style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 70%; display:non " id='s3' fill="green" onclick="actionClose('s3','m3')">
+                <svg id='s3' onclick="actionClose('s3','m3')">
                     <use xlink:href="#alarm-icon"></use>
                 </svg>
                 <img src="../resources\image\siren\unm.svg" style="position: absolute; width: 6.5vw; height: 6.5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m3">
@@ -357,7 +364,7 @@ color:blue;
             </div>
        
                 <div class="siren4">
-                    <svg style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 70%; display:non " id='s4' fill="green" onclick="actionClose('s4','m4')">
+                    <svg id='s4' onclick="actionClose('s4','m4')">
                         <use xlink:href="#alarm-icon"></use>
                     </svg>
                     <img src="../resources\image\siren\unm.svg" style="position: absolute; width: 6.5vw; height: 6.5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m4">
