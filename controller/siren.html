@@ -7,7 +7,8 @@
     <script src="../resources/js/paho-mqtt-min.js"></script>
     <script src="../resources/js/connection.js"></script>
     <style>
-        body{margin: 0 auto; width: 100%;}
+        body{margin: 0 auto; width: 100%;     font-family: 'Avenir', sans-serif;
+}
         .container_main{box-shadow: 0.5px 0.5px 3px 0.5px gray; width: 95%; height: 85vw; position:relative; margin: 0 auto;}
         .container {
             position:relative;
@@ -213,17 +214,46 @@ color:blue;
  .bar {width: 3px;margin-right: 1px;background-color: #ccc;}
   
  #s1,#s2,#s3,#s4{
-  position: absolute;
-   top: 40%; 
-   left: 50%;
+    position: absolute;
+    top: 40%; 
+    left: 50%;
     transform: translate(-50%, -50%); 
     height: 70%;
-     display:inline ;
-     fill: green;
-
+    display:inline ;
+    fill: green;
     width: 70%;
+
   }
 
+
+#sT1,#sT2,#sT3,#sT4{
+    position: absolute;
+    top: 40%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    height: 70%;
+    display:none ;
+    fill: red;
+    width: 70%;
+    animation: opc .5s infinite;
+  }
+@keyframes opc {
+  from {opacity: 1;}
+  to {opacity: .2;}
+}
+
+#m1,#m2,#m3,#m4
+{
+   position: absolute;
+   width: 6.5vw; 
+   height: 6.5vw;
+   top: 40%;
+   left: 50%;
+   display: none;
+   margin-top: 1.5%;
+   transform: translate(-50%, -50%);
+
+}
 
 @media only screen and (min-width: 900px) {
       
@@ -255,7 +285,7 @@ color:blue;
          border-style: solid; width: 12vw; height: 12vw; position: absolute; left:45.5%; top:79.7%;
          border-radius: 2vw;
          border-width: .5vw;
-         border-color: gray;
+         border-color: gray ;
 
          transform: translateX(-50%);
    
@@ -341,7 +371,10 @@ color:blue;
             <svg id='s1' onclick="actionClose('s1','m1')">
                 <use xlink:href="#alarm-icon"></use>
             </svg>
-            <img src="../resources\image\siren\unm.svg" style="position: absolute; width: 6.5vw; height: 6.5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m1">
+            <svg id='sT1'  onclick="actionClose('sT1','m1')">
+              <use xlink:href="#alarm-icon"></use>
+          </svg>
+            <img src="../resources\image\siren\unm.svg"  id="m1">
         
             <div class="dot" id="node/spc/7469308fcf871dad4d4"></div>
         </div>
@@ -350,7 +383,10 @@ color:blue;
                 <svg id='s2'  onclick="actionClose('s2','m2')">
                     <use xlink:href="#alarm-icon"></use>
                 </svg>
-                <img src="../resources\image\siren\unm.svg" style="position: absolute; width: 6.5vw; height: 6.5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m2">
+                <svg id='sT2'  onclick="actionClose('s2','m2')">
+                  <use xlink:href="#alarm-icon"></use>
+              </svg>
+                <img src="../resources\image\siren\unm.svg" id="m2">
                 <div class="dot" id="node/spc/7469308fcf871dad4d4"></div>
 
             </div>
@@ -360,7 +396,10 @@ color:blue;
                 <svg id='s3' onclick="actionClose('s3','m3')">
                     <use xlink:href="#alarm-icon"></use>
                 </svg>
-                <img src="../resources\image\siren\unm.svg" style="position: absolute; width: 6.5vw; height: 6.5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m3">
+                <svg id='sT3' onclick="actionClose('sT3','m3')">
+                  <use xlink:href="#alarm-icon"></use>
+              </svg>
+                <img src="../resources\image\siren\unm.svg" id="m3">
                 <div class="dot" id="node/spc/7469308fcf871dad4d4"></div>
             </div>
        
@@ -368,7 +407,10 @@ color:blue;
                     <svg id='s4' onclick="actionClose('s4','m4')">
                         <use xlink:href="#alarm-icon"></use>
                     </svg>
-                    <img src="../resources\image\siren\unm.svg" style="position: absolute; width: 6.5vw; height: 6.5vw; top: 40%; left: 50%; display: none; margin-top: 1.5%; transform: translate(-50%, -50%);" id="m4">
+                    <svg id='sT4' onclick="actionClose('sT4','m4')">
+                      <use xlink:href="#alarm-icon"></use>
+                  </svg>
+                    <img src="../resources\image\siren\unm.svg" id="m4">
                     <div class="dot" id="node/spc/7469308fcf871dad4d4"></div>
                 </div>
     
@@ -377,9 +419,9 @@ color:blue;
             <div id="overlay3"></div>
           </div>
 <br><br>
-            <div style="width: 95%; margin: 0 auto;">
+        <div style="width: 95%; margin: 0 auto;">
                 
-                <div class="Al">
+          <div class="Al">
                 <div class="status_box">
                     <div class="topic"><p>Sirenes Action</p></div>
                     <div class="option">  <div class="toggle">
@@ -389,37 +431,50 @@ color:blue;
                  <div class="status_box">
                   <div class="topic"><p>Sirenes Auto Reset</p></div>
                   <div class="option">  <div class="toggle">
-                  <input type="checkbox" id="S_Dis" checked><label for="S_Dis" ></label></div> 
+                  <input type="checkbox" id="S_Dis" ><label for="S_Dis" ></label></div></div>
                </div>
-                </div>
+
+
                 <div class="status_box" id="set_timer_time_box">
                   <div class="topic"><p id="label_timer_time" >Sirens Reset Time</p></div>
                   <div class="option" ><div class="custom-select" style=" margin-top:12.6px;margin-bottom: 12.6px;">
                     <select name="time" id="time">
-                      <option value="volvo">10sec</option>
-                      <option value="saab">20sec</option>
-                      <option value="opel">30sec</option>
-                      <option value="audi">1 min</option>
-                      <option value="audi">2 min</option>
-                      <option value="audi">3 min</option>
-                      <option value="audi">4 min</option>
-                      <option value="audi">5 min</option>
-                    </select><label for="set_timer_time" id="toggleLabel_set_timer_time_mainpump"></label></div> 
+                      <option value="10">10sec</option>
+                      <option value="20">20sec</option>
+                      <option value="30">30sec</option>
+                      <option value="60">1 min</option>
+                      <option value="120">2 min</option>
+                      <option value="180">3 min</option>
+                      <option value="240">4 min </option>
+                      <option value="300">5 min</option>
+                    </select><label for="time" id="time"></label></div></div>
+               </div>
+
+               <div id="overlay2"></div>
+
+         </div>
             
-            </div>
+
+<br>
+          <div class="Al"  id="moreSet" ontouchstart="addHoverClass('moreSet')" ontouchend="removeHoverClass('moreSet')">
+          <div class="status_box">
+            <div class="topic"><p>More Setting</p></div>
+
+            <div class="option">  <div class="toggle">
+             <img src="../resources\image\siren\arrow1.png" style="width: 30px; height: 30px;"></div></div>
+          </div>
+            
           </div>
 
-          <div id="overlay2"></div>
-
-            </div>
-            
-          </div><br>
-    <div id="popup" class="popup">
+     </div>
+<br>
+        
+      <div id="popup" class="popup">
         <div style="padding: 20px;">   <div class="popup-content">
           <p>Are you sure you want to disarmed this siren?</p>  </div></div>
       <div class="pop_button">
-          <div id="noButton"><p>No</p></div>
-            <div id="yesButton"><p>Yes</p></div></div>
+          <div id="noButton" ontouchstart="addHoverClass('noButton')" ontouchend="removeHoverClass('noButton')"><p>No</p></div>
+            <div id="yesButton" ontouchstart="addHoverClass('yesButton')" ontouchend="removeHoverClass('yesButton')"><p>Yes</p></div></div>
       </div>
   
 
@@ -434,13 +489,13 @@ color:blue;
       <div id="overlay"></div>
     <script>
 
-var id1Value,id1,payload,topic, timer,stat,d=0,bar,
+var id1Value,id1,payload,topic, timer,stat,d=0,bar,value,timeSec,
 companyID="node", deviceType="bsa",deviceID="8983514-da13896f6480",
-//publish_topic=companyID+"/"+deviceType+"/"+"b2n/"+deviceID+"/",// publish topic
+publish_topic=companyID+"/"+deviceType+"/"+"b2n/"+deviceID+"/",// publish topic
 subTopic = companyID+"/"+deviceType+"/"+"+/"+deviceID+"/+";// subscribe topic
 
 
-
+//node/bsa/b2n/8983514-da13896f6480/inching/set/1 1,5
 
 
 function connect(){
@@ -454,7 +509,7 @@ client.onMessageArrived = onMessageArrived;
 function onConnect() {
     console.log("onConnect");    
       client.subscribe(subTopic);
-    // sendCommandToDevice(publish_topic+"info","read");
+   // sendCommandToDevice(publish_topic+"info","read");
 }
 
 function sendCommandToDevice(topic,payload) {
@@ -510,10 +565,10 @@ function offlinestatus(stat)
   if(stat === 'offline'){  document.getElementById("offline").style.color="#FF3827";}
 
   
-  document.getElementById("online").style.display="none";
+ /* document.getElementById("online").style.display="none";
   document.getElementById("offline").style.display="inline";
   document.getElementById("overlay2").style.display="block";
-  document.getElementById("overlay3").style.display="block";
+  document.getElementById("overlay3").style.display="block";*/
 
 
 
@@ -530,6 +585,8 @@ function displayFunction(payload)
 {
   payload = JSON.parse(payload);
   stat=payload['stat'];
+  timeSec=payload.inching_info[1];
+
 
 switch (stat)
 {
@@ -543,8 +600,23 @@ switch (stat)
 updateSignalStrength(payload['rssi'],payload['stat']);//rssi
 
 
+if( payload.inching_info[0] === 1){
+document.getElementById('S_Dis').checked = true;
+document.getElementById("time").style.display="inline";
+document.getElementById("label_timer_time").style.display="inline";
+document.getElementById('time').value = payload.inching_info[1].toString();
+}
+if( payload.inching_info[0] === 0){
+document.getElementById('S_Dis').checked = false;
+document.getElementById("time").style.display="none";
+ document.getElementById("label_timer_time").style.display="none";
+}
+
+
 
 }
+
+
 
  bar=  document.getElementsByClassName("bar");  //signal bar.
     function updateSignalStrength(rssi,stat) {
@@ -576,20 +648,6 @@ updateSignalStrength(payload['rssi'],payload['stat']);//rssi
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-var payload;
 function actionClose(id1,img){
 
         document.getElementById('popup').style.display = 'block';
@@ -659,6 +717,45 @@ function acAll(id)
 
 }
 
+
+
+
+
+document.getElementById('S_Dis').addEventListener('change', function() {
+ var topic=publish_topic+"inching/set/1"
+  if(this.checked){
+          document.getElementById("time").style.display="inline";
+          document.getElementById("label_timer_time").style.display="inline"; 
+          payload="1,"+timeSec;
+        }else{
+          document.getElementById("time").style.display="none";
+          document.getElementById("label_timer_time").style.display="none";
+           payload="0,"+timeSec;
+         }
+          sendCommandToDevice(topic,payload);
+  });
+
+//set time.......................................................................................
+  document.getElementById('time').addEventListener('change', function() {
+      topic=publish_topic+"inching/set/1"
+      value=this.value;
+       payload="1,"+value;
+       timeSec=value;
+      sendCommandToDevice(topic,payload);
+  });
+
+
+  function addHoverClass(id) {
+    document.getElementById(id).style.opacity=0.5 ;
+    document.getElementById(id).style.backgroundColor= '#EEEEEE';
+}
+
+function removeHoverClass(id) {
+    document.getElementById(id).style.opacity=1;
+    document.getElementById(id).style.backgroundColor= 'white';
+}
+
+
 // Function to opne the popup
 function openPopup() {
   var popup = document.getElementById("popup2");
@@ -669,19 +766,6 @@ function openPopup() {
   }, 1300); 
   
 }
-
-
-
-document.getElementById('S_Dis').addEventListener('click', function() {
-
-  if(this.checked){
-          document.getElementById("time").style.display="inline";
-          document.getElementById("label_timer_time").style.display="inline"; 
-        }else{
-          document.getElementById("time").style.display="none";
-          document.getElementById("label_timer_time").style.display="none"; }
-  });
-
 
   connect();
 
