@@ -743,7 +743,17 @@ switch (stat)
     break;
 }
 
-document.getElementById('up_'+topicsArray[3]).innerHTML=payload['up'];
+
+document.getElementById('up_'+topicsArray[3]).innerHTML = formatTime(payload["up"]);// runing time
+    function formatTime(minutes) {
+    var days = Math.floor(minutes / (24 * 60)).toString().padStart(2, '0');
+    var remainingMinutes = minutes % (24 * 60);
+    var hours = Math.floor(remainingMinutes / 60).toString().padStart(2, '0');
+    var remainingSeconds = remainingMinutes % 60;
+    var formattedMinutes = remainingSeconds.toString().padStart(2, '0');
+    return days + "d: " + hours + "h: " + formattedMinutes + "m";
+}
+//document.getElementById('up_'+topicsArray[3]).innerHTML=payload['up'];
 document.getElementById('signal_'+topicsArray[3]).innerHTML=payload['rssi'];
 
 updateSignalStrength(payload['rssi'],payload['stat']);//rssi
