@@ -146,7 +146,7 @@ border-radius: 0px 0px 20px 0px;
 
 
 
-.Ac,.Al { width:100%;box-shadow: 0.5px 0.5px 3px 0.5px gray; border-radius: 3px 3px; position: relative;}
+.Ac,.Al,.moresett{ width:100%;box-shadow: 0.5px 0.5px 3px 0.5px gray; border-radius: 3px 3px; position: relative;}
 .status_box {
         padding-left: 20px;
         padding-right: 20px;
@@ -239,6 +239,17 @@ border-radius: 0px 0px 20px 0px;
     width: 70%;
     animation: opc .5s infinite;
   }
+
+/*more setting page --------------------*/
+
+#morSettingpage {
+
+  width: 95%; height:100%; background-color: white;top:0%;z-index: 9998; display: none;
+}
+#morSettingpage img {
+  width: 30px; height: 30px; margin-left: 2.5%; 
+}
+
 @keyframes opc {
   from {opacity: 1;}
   to {opacity: .2;}
@@ -305,7 +316,7 @@ border-radius: 0px 0px 20px 0px;
     </style>
 </head>
 <body>
-    <table style="width: 100%;">
+    <table style="width: 100%;"  id="div1">
         <tr>
             <td><a href="../index.html"><img src="../resources\image\siren\less-than.png" style="width: 30px; height: 35px;"></a></td>
             <td style="text-align: center; width:100%;"><h2>Siren Monitoring Systems</h2></td>
@@ -313,6 +324,7 @@ border-radius: 0px 0px 20px 0px;
     </table>
     
     <table style="width: 93%; margin: 0 auto;"><tr style="width: 90%;"><td  style="width: 50%;"><td style="width: 50%; text-align: right;">
+    <table style="width: 93%; margin: 0 auto;" id="div2"><tr style="width: 90%;"><td  style="width: 50%;"><td style="width: 50%; text-align: right;">
       <p style="font-size: 13px; color:rgb(156, 156, 156) ; display: inline;" id="offline">offline</p> 
       <p style="font-size: 13px; color:#7BDD0A; display: none;" id="online"> online </p></td>
       <td>
@@ -365,9 +377,9 @@ border-radius: 0px 0px 20px 0px;
 
 
    
-    <div class="container_main" >
+    <div class="container_main"id="div3"  >
    
-    <div class="container" >
+    <div class="container">
         <img id="image" src="../resources\image\siren\i.jpg">
         <div class="siren1">
             <svg id='s1' onclick="actionClose('s1','m1')">
@@ -399,7 +411,7 @@ border-radius: 0px 0px 20px 0px;
                     <use xlink:href="#alarm-icon"></use>
                 </svg>
                 <svg id='sT3' onclick="actionClose('sT3','m3')">
-                  <use xlink:href="#alarm-icon"></use>
+                  <use xlink:href="#alarm-icon"></use>            
               </svg>
                 <img src="../resources\image\siren\unm.svg" id="m3">
                 <div class="dot" id="node/spc/7469308fcf871dad4d4"></div>
@@ -420,8 +432,8 @@ border-radius: 0px 0px 20px 0px;
             </div>
             <div id="overlay3"></div>
           </div>
-<br><br>
-        <div style="width: 95%; margin: 0 auto;">
+<br>
+        <div style="width: 95%; margin: 0 auto;" id="div4">
                 
           <div class="Al">
                 <div class="status_box">
@@ -458,17 +470,25 @@ border-radius: 0px 0px 20px 0px;
             
 
 <br>
-          <div class="Al"  id="moreSet" ontouchstart="addHoverClass('moreSet')" ontouchend="removeHoverClass('moreSet')">
+      <div class="moresett"  id="div5" ontouchstart="addHoverClass('div5')" ontouchend="removeHoverClass('div5')" onclick="MoreSettingPage()">
           <div class="status_box">
             <div class="topic"><p>More Setting</p></div>
-
             <div class="option">  <div class="toggle">
              <img src="../resources\image\siren\arrow1.png" style="width: 30px; height: 30px;"></div></div>
           </div>
             
-          </div>
+      </div>
 
      </div>
+
+
+
+ <div id="morSettingpage">
+   <img src="../resources\image\siren\less-than.png"  onclick="Gosiren()">
+   <h2 style="margin-left: 5%;">More Setting</h2>
+</div>
+
+<br>
 <br>
         
       <div id="popup" class="popup">
@@ -480,6 +500,8 @@ border-radius: 0px 0px 20px 0px;
       </div>
   
 
+
+
       <div id="popup2" class="popup2" >
         <div class="popup2-content" >
           <p style=" font-size: 12px;">siren  disarm!</p>
@@ -490,6 +512,27 @@ border-radius: 0px 0px 20px 0px;
     
       <div id="overlay"></div>
     <script>
+//navigate morw setting page....................
+function MoreSettingPage()
+{
+document.getElementById('morSettingpage').style.display='block';
+
+for (var i = 1; i <= 5; i++) {
+  document.getElementById('div' + i).style.display = 'none';
+}
+
+
+}
+function Gosiren()
+{
+document.getElementById('morSettingpage').style.display='none';
+for (var i = 1; i <= 5; i++) {
+  document.getElementById('div' + i).style.display = 'block';
+}
+
+}
+
+
 
 var id1Value,id1,payload,topic, timer,stat,d=0,bar,value,timeSec,
 companyID="node", deviceType="bsa",deviceID="8983514-da13896f6480",
@@ -567,10 +610,10 @@ function offlinestatus(stat)
   if(stat === 'offline'){  document.getElementById("offline").style.color="#FF3827";}
 
   
- /* document.getElementById("online").style.display="none";
+  document.getElementById("online").style.display="none";
   document.getElementById("offline").style.display="inline";
   document.getElementById("overlay2").style.display="block";
-  document.getElementById("overlay3").style.display="block";*/
+  document.getElementById("overlay3").style.display="block";
 
 
 
@@ -770,7 +813,7 @@ function openPopup() {
 }
 
   connect();
-
+  Gosiren();
   setTimeout(function() {
   if(stat !== 'online'){
   offlinestatus('none');}
