@@ -146,7 +146,7 @@ border-radius: 0px 0px 20px 0px;
 
 
 
-.Ac,.Al,.moresett{ width:100%;box-shadow: 0.5px 0.5px 3px 0.5px gray; border-radius: 3px 3px; position: relative;}
+.Ac,.Al,.moresett,.moreset_container{ width:100%;box-shadow: 0.5px 0.5px 3px 0.5px gray; border-radius: 3px 3px; position: relative;}
 .status_box {
         padding-left: 20px;
         padding-right: 20px;
@@ -243,12 +243,14 @@ border-radius: 0px 0px 20px 0px;
 /*more setting page --------------------*/
 
 #morSettingpage {
-
-  width: 95%; height:100%; background-color: white;top:0%;z-index: 9998; display: none;
+  width: 95%; height:100%; background-color: white;top:0%;z-index: 9998; display: non; position: relative; margin: 0 auto;
 }
 #morSettingpage img {
-  width: 30px; height: 30px; margin-left: 2.5%; 
+  width: 30px; height: 30px; 
 }
+
+.box{ width:95%;box-shadow: 0.5px 0.5px 3px 0.5px gray; border-radius: 3px 3px; position:absolute;}
+
 
 @keyframes opc {
   from {opacity: 1;}
@@ -261,7 +263,7 @@ border-radius: 0px 0px 20px 0px;
    width: 6.5vw; 
    height: 6.5vw;
    top: 40%;
-   left: 50%;
+   left: 50%; 
    display: none;
    margin-top: 1.5%;
    transform: translate(-50%, -50%);
@@ -389,7 +391,11 @@ border-radius: 0px 0px 20px 0px;
           </svg>
             <img src="../resources\image\siren\unm.svg"  id="m1">
         
-            <div class="dot" id="node/spc/7469308fcf871dad4d4"></div>
+            <div class="dot" id="node/spc/7469308fcf871dad4d4">
+              <div style="left:-8.5vw; top:-16vw; font-size: 2.5vw;position: absolute;"><p>Rear&nbsp;Right</p></div>
+
+            </div>
+    
         </div>
            
             <div  class="siren2">
@@ -400,8 +406,11 @@ border-radius: 0px 0px 20px 0px;
                   <use xlink:href="#alarm-icon"></use>
               </svg>
                 <img src="../resources\image\siren\unm.svg" id="m2">
-                <div class="dot" id="node/spc/7469308fcf871dad4d4"></div>
+                <div class="dot" id="node/spc/7469308fcf871dad4d4">
 
+                  <div style="left:-8.5vw; top:1vw; font-size: 2.5vw;position: absolute;"><p>Front&nbsp;Right</p></div>
+
+                </div>
             </div>
    
 
@@ -413,7 +422,11 @@ border-radius: 0px 0px 20px 0px;
                   <use xlink:href="#alarm-icon"></use>            
               </svg>
                 <img src="../resources\image\siren\unm.svg" id="m3">
-                <div class="dot" id="node/spc/7469308fcf871dad4d4"></div>
+                <div class="dot" id="node/spc/7469308fcf871dad4d4">
+                  <div style="left:-8.5vw; top:1vw; font-size: 2.5vw;position: absolute;"><p>Front&nbsp;Left</p></div>
+
+                </div>
+  
             </div>
        
                 <div class="siren4">
@@ -424,7 +437,11 @@ border-radius: 0px 0px 20px 0px;
                       <use xlink:href="#alarm-icon"></use>
                   </svg>
                     <img src="../resources\image\siren\unm.svg" id="m4">
-                    <div class="dot" id="node/spc/7469308fcf871dad4d4"></div>
+                    <div class="dot" id="node/spc/7469308fcf871dad4d4">
+                      <div style="left:-8.5vw; top:1vw; font-size: 2.5vw;position: absolute;"><p>Rear&nbsp;Left</p></div>
+
+                    </div>
+                  
                 </div>
     
               
@@ -481,10 +498,26 @@ border-radius: 0px 0px 20px 0px;
      </div>
 
 
-
+<!--more setting page..............................................................................-->
  <div id="morSettingpage">
    <img src="../resources\image\siren\less-than.png"  onclick="Gosiren()">
-   <h2 style="margin-left: 5%;">More Setting</h2>
+   <h2>More Setting</h2>
+
+
+<div id="box">
+  
+
+
+</div>
+ 
+
+
+
+
+
+
+
+
 </div>
 
 <br>
@@ -511,6 +544,63 @@ border-radius: 0px 0px 20px 0px;
     
       <div id="overlay"></div>
     <script>
+var ids = [
+  '8983514-da13896f6485',
+  '8983514-da13896f6481',
+  '8983514-da13896f6480',
+  '8983514-da13896f6483'
+];
+
+var device_name = [
+
+' Front Left Siren',
+' Front Right Siren',
+'Rear Left Siren',
+'Rear Right Siren'
+];
+const container = document.getElementById('box');
+    const numCopies = 4; // Number of copies to create
+  
+    const generateTemplate = (index,device_name) => `
+    <small style="color:gray" id="device_name"><b>${device_name}</b></small>
+  <div class="moreset_container">
+  <div class="status_box">
+           <div class="topic"><p>Stat</p></div>
+           <div class="option">  <div class="toggle">
+            <p style="font-size: 13px; color:rgb(156, 156, 156) ; display: inline;" id="offline_${index}">offline</p> 
+            <p style="font-size: 13px; color:#7BDD0A; display: none;" id="online_${index}"> online </p></td>
+            </div></div>
+         </div>
+         <div class="status_box">
+           <div class="topic"><p>Signal Strength </p></div>
+           <div class="option">  <div class="toggle">
+             <p id="signal_${index}">--</p>
+            </div></div>
+         </div>
+
+         <div class="status_box">
+           <div class="topic"><p>Up Time</p></div>
+           <div class="option">  <div class="toggle">
+             <p id="up_${index}">--</p>
+            </div></div>
+         </div>
+ </div>
+<br>
+       
+    `;
+
+    for (let i = 0; i < numCopies; i++) {
+      const template = generateTemplate(ids[i], device_name[i]);
+        container.insertAdjacentHTML('beforeend', template);
+        
+        console.log(ids[i]);
+        
+    }
+
+
+   // document.getElementById('8983514-da13896f6480').style.display = 'inline';
+
+
 //navigate morw setting page....................
 function MoreSettingPage()
 {
@@ -533,7 +623,7 @@ for (var i = 1; i <= 5; i++) {
 
 
 
-var id1Value,id1,payload,topic, timer,stat,d=0,bar,value,timeSec,
+var id1Value,id1,payload,topic, timer,stat,d=0,bar,value,timeSec,topicsArray,
 companyID="node", deviceType="bsa",deviceID="8983514-da13896f6480",
 publish_topic=companyID+"/"+deviceType+"/"+"b2n/"+deviceID+"/",// publish topic
 subTopic = companyID+"/"+deviceType+"/"+"+/"+deviceID+"/+";// subscribe topic
@@ -553,7 +643,7 @@ client.onMessageArrived = onMessageArrived;
 function onConnect() {
     console.log("onConnect");    
       client.subscribe(subTopic);
-   // sendCommandToDevice(publish_topic+"info","read");
+    sendCommandToDevice(publish_topic+"info","read");
 }
 
 function sendCommandToDevice(topic,payload) {
@@ -578,7 +668,7 @@ function onMessageArrived(message) {
   payload=message.payloadString;
     console.log("Payload:" + payload);
     console.log("Topic:", topic);
-   displayFunction(payload); 
+   displayFunction(payload,topic); 
 
   }
   catch(error)
@@ -625,22 +715,37 @@ bar[x].style.backgroundColor = "#ccc";
 }
 
 
-function displayFunction(payload)
+function displayFunction(payload,topic)
 {
+  topicsArray = topic.split("/");
   payload = JSON.parse(payload);
   stat=payload['stat'];
   timeSec=payload.inching_info[1];
 
+//more page----------------------------------------------------------------------------------------------
 
+
+
+
+
+//------------------------------------------------------------------------------------------------------
 switch (stat)
 {
   case "online":
     onlinestatus();
+    document.getElementById('online_'+topicsArray[3]).style.display = 'inline';
+    document.getElementById('offline_'+topicsArray[3]).style.display = 'none';
     break;
   case "offline":
   offlinestatus(stat);
+  document.getElementById('online_'+topicsArray[3]).style.display = 'none';
+  document.getElementById('offline_'+topicsArray[3]).style.display = 'inline';
     break;
 }
+
+document.getElementById('up_'+topicsArray[3]).innerHTML=payload['up'];
+document.getElementById('signal_'+topicsArray[3]).innerHTML=payload['rssi'];
+
 updateSignalStrength(payload['rssi'],payload['stat']);//rssi
 
 
