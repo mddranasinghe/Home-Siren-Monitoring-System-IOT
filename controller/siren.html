@@ -391,8 +391,8 @@ border-radius: 0px 0px 20px 0px;
           </svg>
             <img src="../resources\image\siren\unm.svg"  id="m1">
         
-            <div class="dot" id="node/spc/7469308fcf871dad4d4">
-              <div style="left:-8.5vw; top:-16vw; font-size: 2.5vw;position: absolute;"><p>Rear&nbsp;Right</p></div>
+            <div class="dot" id="dot_8983514-da13896f6480">
+              <div style="left:-8.5vw; top:-16vw; font-size: 2.5vw;position: absolute;"><p>Rear&nbsp;Left</p></div>
 
             </div>
     
@@ -406,9 +406,9 @@ border-radius: 0px 0px 20px 0px;
                   <use xlink:href="#alarm-icon"></use>
               </svg>
                 <img src="../resources\image\siren\unm.svg" id="m2">
-                <div class="dot" id="node/spc/7469308fcf871dad4d4">
+                <div class="dot" id="7469308fcf871dad4d4">
 
-                  <div style="left:-8.5vw; top:1vw; font-size: 2.5vw;position: absolute;"><p>Front&nbsp;Right</p></div>
+                  <div style="left:-8.5vw; top:1vw; font-size: 2.5vw;position: absolute;"><p>Front&nbsp;Left</p></div>
 
                 </div>
             </div>
@@ -423,7 +423,7 @@ border-radius: 0px 0px 20px 0px;
               </svg>
                 <img src="../resources\image\siren\unm.svg" id="m3">
                 <div class="dot" id="node/spc/7469308fcf871dad4d4">
-                  <div style="left:-8.5vw; top:1vw; font-size: 2.5vw;position: absolute;"><p>Front&nbsp;Left</p></div>
+                  <div style="left:-8.5vw; top:1vw; font-size: 2.5vw;position: absolute;"><p>Front&nbsp;Right</p></div>
 
                 </div>
   
@@ -437,8 +437,8 @@ border-radius: 0px 0px 20px 0px;
                       <use xlink:href="#alarm-icon"></use>
                   </svg>
                     <img src="../resources\image\siren\unm.svg" id="m4">
-                    <div class="dot" id="node/spc/7469308fcf871dad4d4">
-                      <div style="left:-8.5vw; top:1vw; font-size: 2.5vw;position: absolute;"><p>Rear&nbsp;Left</p></div>
+                    <div class="dot" id="">
+                      <div style="left:-8.5vw; top:1vw; font-size: 2.5vw;position: absolute;"><p>Rear&nbsp;Right</p></div>
 
                     </div>
                   
@@ -544,22 +544,31 @@ border-radius: 0px 0px 20px 0px;
     
       <div id="overlay"></div>
     <script>
-var ids = [
+//var s='node/bsa/n2b/8983514-da13896f6480/inching';
+//var all="node/bsa/b2n/allFourDevices/";
+var id1Value,id1,payload,topic, timer,stat,d=0,bar,value,timeSec,topicsArray,
+companyID="node", deviceType="bsa",deviceID="8983514-da13896f6480",
+//publish_topic=companyID+"/"+deviceType+"/"+"b2n/"+deviceID+"/",// publish topic
+publish_topic=companyID+"/"+deviceType+"/"+"b2n/allFourDevices/",// publish topic
+subTopic = companyID+"/"+deviceType+"/"+"+/"+deviceID+"/+",// subscribe topic
+
+ device_id = [
   '8983514-da13896f6485',
   '8983514-da13896f6481',
   '8983514-da13896f6480',
   '8983514-da13896f6483'
-];
+],
 
-var device_name = [
+ device_name = [
 
 ' Front Left Siren',
 ' Front Right Siren',
 'Rear Left Siren',
 'Rear Right Siren'
-];
-const container = document.getElementById('box');
-    const numCopies = 4; // Number of copies to create
+],
+
+ container = document.getElementById('box'),
+ numCopies = device_id.length;
   
     const generateTemplate = (index,device_name) => `
     <small style="color:gray" id="device_name"><b>${device_name}</b></small>
@@ -573,15 +582,19 @@ const container = document.getElementById('box');
          </div>
          <div class="status_box">
            <div class="topic"><p>Signal Strength </p></div>
-           <div class="option">  <div class="toggle">
-             <p id="signal_${index}">--</p>
-            </div></div>
-         </div>
+           <div class="option"><div class="toggle">
+         <p id="signal_${index}" style=font-size:13px>--</p>
 
+     
+
+    
+         </div></div>
+         </div>
+          
          <div class="status_box">
            <div class="topic"><p>Up Time</p></div>
            <div class="option">  <div class="toggle">
-             <p id="up_${index}">--</p>
+             <p id="up_${index}"style=font-size:13px>--</p>
             </div></div>
          </div>
  </div>
@@ -590,15 +603,12 @@ const container = document.getElementById('box');
     `;
 
     for (let i = 0; i < numCopies; i++) {
-      const template = generateTemplate(ids[i], device_name[i]);
+      const template = generateTemplate(device_id[i], device_name[i]);
         container.insertAdjacentHTML('beforeend', template);
         
-        console.log(ids[i]);
+        console.log(device_id[i]);
         
     }
-
-
-   // document.getElementById('8983514-da13896f6480').style.display = 'inline';
 
 
 //navigate morw setting page....................
@@ -621,18 +631,7 @@ for (var i = 1; i <= 5; i++) {
 
 }
 
-
-
-var id1Value,id1,payload,topic, timer,stat,d=0,bar,value,timeSec,topicsArray,
-companyID="node", deviceType="bsa",deviceID="8983514-da13896f6480",
-publish_topic=companyID+"/"+deviceType+"/"+"b2n/"+deviceID+"/",// publish topic
-subTopic = companyID+"/"+deviceType+"/"+"+/"+deviceID+"/+";// subscribe topic
-
-
-//node/bsa/b2n/8983514-da13896f6480/inching/set/1 1,5
-
-
-function connect(){
+function connect(){//connect------------------------------------------------------------------
 try{
 client.connect({ onSuccess: onConnect,useSSL: mqttUseSSL,userName,password });
 client.onConnectionLost = onConnectionLost;
@@ -643,7 +642,9 @@ client.onMessageArrived = onMessageArrived;
 function onConnect() {
     console.log("onConnect");    
       client.subscribe(subTopic);
+    //  client.subscribe(s);
     sendCommandToDevice(publish_topic+"info","read");
+
 }
 
 function sendCommandToDevice(topic,payload) {
@@ -669,6 +670,7 @@ function onMessageArrived(message) {
     console.log("Payload:" + payload);
     console.log("Topic:", topic);
    displayFunction(payload,topic); 
+
 
   }
   catch(error)
@@ -696,7 +698,11 @@ function onlinestatus()
 }
 function offlinestatus(stat)
 {
-  if(stat === 'offline'){  document.getElementById("offline").style.color="#FF3827";}
+  if(stat === 'offline'){  
+    
+    document.getElementById("offline").style.color="#FF3827";
+    document.getElementById('offline_'+topicsArray[3]).style.color="#FF3827";
+}
 
   
   document.getElementById("online").style.display="none";
@@ -717,29 +723,34 @@ bar[x].style.backgroundColor = "#ccc";
 
 function displayFunction(payload,topic)
 {
+ 
+  //console.log('kkk'+payload);
   topicsArray = topic.split("/");
   payload = JSON.parse(payload);
   stat=payload['stat'];
   timeSec=payload.inching_info[1];
 
-//more page----------------------------------------------------------------------------------------------
+console.log(payload);
+//console.log(topic);
+ 
+
+console.log('v'+ payload.inching_info[0]);
 
 
 
-
-
-//------------------------------------------------------------------------------------------------------
 switch (stat)
 {
   case "online":
     onlinestatus();
     document.getElementById('online_'+topicsArray[3]).style.display = 'inline';
     document.getElementById('offline_'+topicsArray[3]).style.display = 'none';
+    document.getElementById('dot_'+topicsArray[3]).style.backgroundColor="#7BDD0A";
     break;
   case "offline":
   offlinestatus(stat);
   document.getElementById('online_'+topicsArray[3]).style.display = 'none';
   document.getElementById('offline_'+topicsArray[3]).style.display = 'inline';
+  document.getElementById('dot_'+topicsArray[3]).style.backgroundColor="#FF3827";
     break;
 }
 
@@ -753,11 +764,27 @@ document.getElementById('up_'+topicsArray[3]).innerHTML = formatTime(payload["up
     var formattedMinutes = remainingSeconds.toString().padStart(2, '0');
     return days + "d: " + hours + "h: " + formattedMinutes + "m";
 }
-//document.getElementById('up_'+topicsArray[3]).innerHTML=payload['up'];
-document.getElementById('signal_'+topicsArray[3]).innerHTML=payload['rssi'];
+ 
+//var s=payload['stat'];
+
+var n=Math.abs(payload['rssi']);
+var d=(n % 50);
+if(d == 0) 
+{
+  document.getElementById('signal_'+topicsArray[3]).innerHTML='&nbsp100%';
+}
+else if(d != 0){
+var d2= d*2;
+d2=100-d2;
+document.getElementById('signal_'+topicsArray[3]).innerHTML='&nbsp'+d2+'%';
+
+
+}
+//document.getElementById('signal_'+topicsArray[3]).innerHTML='&nbsp'+payload['rssi'];
+
+
 
 updateSignalStrength(payload['rssi'],payload['stat']);//rssi
-
 
 if( payload.inching_info[0] === 1){
 document.getElementById('S_Dis').checked = true;
@@ -770,8 +797,6 @@ document.getElementById('S_Dis').checked = false;
 document.getElementById("time").style.display="none";
  document.getElementById("label_timer_time").style.display="none";
 }
-
-
 
 }
 
@@ -896,7 +921,7 @@ document.getElementById('S_Dis').addEventListener('change', function() {
 
 //set time.......................................................................................
   document.getElementById('time').addEventListener('change', function() {
-      topic=publish_topic+"inching/set/1"
+      topic=all+"inching/set/1"
       value=this.value;
        payload="1,"+value;
        timeSec=value;
