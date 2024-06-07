@@ -391,7 +391,7 @@ border-radius: 0px 0px 20px 0px;
           </svg>
             <img src="../resources\image\siren\unm.svg"  id="m1">
         
-            <div class="dot" id="dot_8983514-da13896f6480">
+            <div class="dot" id="dot_16351370-8a80f94dffbc">
               <div style="left:-8.5vw; top:-16vw; font-size: 2.5vw;position: absolute;"><p>Rear&nbsp;Left</p></div>
 
             </div>
@@ -406,7 +406,7 @@ border-radius: 0px 0px 20px 0px;
                   <use xlink:href="#alarm-icon"></use>
               </svg>
                 <img src="../resources\image\siren\unm.svg" id="m2">
-                <div class="dot" id="7469308fcf871dad4d4">
+                <div class="dot" id="dot_16334980-8440f94dffbc">
 
                   <div style="left:-8.5vw; top:1vw; font-size: 2.5vw;position: absolute;"><p>Front&nbsp;Left</p></div>
 
@@ -422,7 +422,7 @@ border-radius: 0px 0px 20px 0px;
                   <use xlink:href="#alarm-icon"></use>            
               </svg>
                 <img src="../resources\image\siren\unm.svg" id="m3">
-                <div class="dot" id="node/spc/7469308fcf871dad4d4">
+                <div class="dot" id="dot_16337445-254af94dffbc">
                   <div style="left:-8.5vw; top:1vw; font-size: 2.5vw;position: absolute;"><p>Front&nbsp;Right</p></div>
 
                 </div>
@@ -437,7 +437,7 @@ border-radius: 0px 0px 20px 0px;
                       <use xlink:href="#alarm-icon"></use>
                   </svg>
                     <img src="../resources\image\siren\unm.svg" id="m4">
-                    <div class="dot" id="">
+                    <div class="dot" id="dot_16336187-3b45f94dffbc">
                       <div style="left:-8.5vw; top:1vw; font-size: 2.5vw;position: absolute;"><p>Rear&nbsp;Right</p></div>
 
                     </div>
@@ -546,19 +546,30 @@ border-radius: 0px 0px 20px 0px;
     <script>
 //var s='node/bsa/n2b/8983514-da13896f6480/inching';
 //var all="node/bsa/b2n/allFourDevices/";
-var id1Value,id1,payload,topic, timer,stat,d=0,bar,value,timeSec,topicsArray,
+var id1Value,id1,payload,topic, timer,stat,d=0,bar,value,timeSec,topicsArray,statValue=0,s=0,
 companyID="node", deviceType="bsa",deviceID="8983514-da13896f6480",
 //publish_topic=companyID+"/"+deviceType+"/"+"b2n/"+deviceID+"/",// publish topic
-publish_topic=companyID+"/"+deviceType+"/"+"b2n/allFourDevices/",// publish topic
-subTopic = companyID+"/"+deviceType+"/"+"+/"+deviceID+"/+",// subscribe topic
+publish_topic=companyID+"/"+deviceType+"/"+"b2n/homeCorners/",// publish topic
+//subTopic = companyID+"/"+deviceType+"/"+"+/"+"+"+"/+", // subscribe topic
 
  device_id = [
-  '8983514-da13896f6485',
-  '8983514-da13896f6481',
-  '8983514-da13896f6480',
-  '8983514-da13896f6483'
+  '16351370-8a80f94dffbc',
+  '16334980-8440f94dffbc',
+  '16337445-254af94dffbc',
+  '16336187-3b45f94dffbc'
 ],
 
+subTopic1 = companyID+"/"+deviceType+"/"+"+/"+device_id[0]+"/+",// subscribe topic
+subTopic2 = companyID+"/"+deviceType+"/"+"+/"+device_id[1]+"/+",// subscribe topic
+subTopic3 = companyID+"/"+deviceType+"/"+"+/"+device_id[2]+"/+",// subscribe topic
+subTopic4 = companyID+"/"+deviceType+"/"+"+/"+device_id[3]+"/+",// subscribe topic
+
+/*
+ '14028845-2d10d6e768e8',
+  '8973248-c0eb886f6480',
+  '8983514-da13896f6480',
+  '8955008-80a4886f6480'
+*/
  device_name = [
 
 ' Front Left Siren',
@@ -584,10 +595,6 @@ subTopic = companyID+"/"+deviceType+"/"+"+/"+deviceID+"/+",// subscribe topic
            <div class="topic"><p>Signal Strength </p></div>
            <div class="option"><div class="toggle">
          <p id="signal_${index}" style=font-size:13px>--</p>
-
-     
-
-    
          </div></div>
          </div>
           
@@ -606,7 +613,7 @@ subTopic = companyID+"/"+deviceType+"/"+"+/"+deviceID+"/+",// subscribe topic
       const template = generateTemplate(device_id[i], device_name[i]);
         container.insertAdjacentHTML('beforeend', template);
         
-        console.log(device_id[i]);
+          console.log(device_id[i]);
         
     }
 
@@ -641,9 +648,15 @@ client.onMessageArrived = onMessageArrived;
 
 function onConnect() {
     console.log("onConnect");    
-      client.subscribe(subTopic);
+      client.subscribe(subTopic1);
+      client.subscribe(subTopic2);
+      client.subscribe(subTopic3);
+      client.subscribe(subTopic4);
+
+      //client.subscribe('node/bsa/n2b/+/inching');
+
     //  client.subscribe(s);
-    sendCommandToDevice(publish_topic+"info","read");
+    //sendCommandToDevice(publish_topic+"info","read");
 
 }
 
@@ -670,7 +683,6 @@ function onMessageArrived(message) {
     console.log("Payload:" + payload);
     console.log("Topic:", topic);
    displayFunction(payload,topic); 
-
 
   }
   catch(error)
@@ -723,20 +735,16 @@ bar[x].style.backgroundColor = "#ccc";
 
 function displayFunction(payload,topic)
 {
- 
-  //console.log('kkk'+payload);
-  topicsArray = topic.split("/");
   payload = JSON.parse(payload);
+  topicsArray = topic.split("/");
   stat=payload['stat'];
-  timeSec=payload.inching_info[1];
+  timeSec=payload.inching[1];
 
-console.log(payload);
-//console.log(topic);
- 
+ // statValue = (payload['stat'] === 'online') ? 1 : (payload['stat'] === 'offline' ?  0 : statValue );
+    statValue = (payload['stat'] === 'offline') ? 1 : 0;
+    s=statValue+s;
 
-console.log('v'+ payload.inching_info[0]);
-
-
+  console.log('ddd -'+ s)
 
 switch (stat)
 {
@@ -769,9 +777,10 @@ document.getElementById('up_'+topicsArray[3]).innerHTML = formatTime(payload["up
 
 var n=Math.abs(payload['rssi']);
 var d=(n % 50);
-if(d == 0) 
+if(n <= 50) 
 {
-  document.getElementById('signal_'+topicsArray[3]).innerHTML='&nbsp100%';
+  document.getElementById('signal_'+topicsArray[3]).innerHTML='&nbsp99%';
+
 }
 else if(d != 0){
 var d2= d*2;
@@ -780,26 +789,46 @@ document.getElementById('signal_'+topicsArray[3]).innerHTML='&nbsp'+d2+'%';
 
 
 }
-//document.getElementById('signal_'+topicsArray[3]).innerHTML='&nbsp'+payload['rssi'];
+//console.log(d2)
+
 
 
 
 updateSignalStrength(payload['rssi'],payload['stat']);//rssi
 
-if( payload.inching_info[0] === 1){
+if( payload.inching[0] === 1  ){
 document.getElementById('S_Dis').checked = true;
 document.getElementById("time").style.display="inline";
 document.getElementById("label_timer_time").style.display="inline";
-document.getElementById('time').value = payload.inching_info[1].toString();
+document.getElementById('time').value = payload.inching[1].toString();
 }
-if( payload.inching_info[0] === 0){
+if( payload.inching[0] === 0 ){
 document.getElementById('S_Dis').checked = false;
 document.getElementById("time").style.display="none";
  document.getElementById("label_timer_time").style.display="none";
 }
 
+
+if( payload['sw'] == 1 )
+{
+  for (var i = 1; i < 5; i++) {
+  
+  document.getElementById(('s' + i)).style.display = "none"; 
+  document.getElementById(('sT' + i)).style.display = "inline";
 }
 
+}
+if( payload['sw'] == 0 )
+{
+  for (var i = 1; i < 5; i++) {
+  
+  document.getElementById(('s' + i)).style.display = "inline"; 
+  document.getElementById(('sT' + i)).style.display = "none";
+}
+
+}
+
+}
 
 
  bar=  document.getElementsByClassName("bar");  //signal bar.
@@ -901,10 +930,6 @@ function acAll(id)
 
 }
 
-
-
-
-
 document.getElementById('S_Dis').addEventListener('change', function() {
  var topic=publish_topic+"inching/set/1"
   if(this.checked){
@@ -921,7 +946,7 @@ document.getElementById('S_Dis').addEventListener('change', function() {
 
 //set time.......................................................................................
   document.getElementById('time').addEventListener('change', function() {
-      topic=all+"inching/set/1"
+      topic=publish_topic+"inching/set/1"
       value=this.value;
        payload="1,"+value;
        timeSec=value;
@@ -951,7 +976,7 @@ function openPopup() {
   
 }
 
-  connect();
+  connect();          
   Gosiren();
   setTimeout(function() {
   if(stat !== 'online'){
