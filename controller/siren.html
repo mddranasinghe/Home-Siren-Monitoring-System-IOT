@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" href="data:,">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -456,16 +457,11 @@ border-radius: 0px 0px 20px 0px;
 
 
           <div class="Al">
-            <div class="status_box" >
-              <div class="topic" id="reset_sirens" style="display: none;" ><p>Sirenes Reset</p></div>
-              <div class="option">  <div class="toggle">
-                <button id="button_siren" onclick="actionClose('button_sire','reset_siren')">reset</button>           </div>
-           </div>
-          </div>
+    
               <div class="status_box">
                     <div class="topic"><p>Sirenes Action</p></div>
                     <div class="option">  <div class="toggle">
-                    <input type="checkbox" id="S_Ac" onclick="acAll('S_Ac')"  checked><label for="S_Ac" ></label></div> 
+                    <input type="checkbox" id="S_Ac" onclick="acAll('S_Ac')" checked><label for="S_Ac" ></label></div> 
                  </div>
                  </div>
                  <div class="status_box">
@@ -498,7 +494,7 @@ border-radius: 0px 0px 20px 0px;
 <br>
       <div class="moresett"  id="div5" ontouchstart="addHoverClass('div5')" ontouchend="removeHoverClass('div5')" onclick="MoreSettingPage()">
           <div class="status_box">
-            <div class="topic"><p>More Setting</p></div>
+            <div class="topic"><p><b>More Setting</b></p></div>
             <div class="option">  <div class="toggle">
              <img src="../resources\image\siren\arrow1.png" style="width: 30px; height: 30px;"></div></div>
           </div>
@@ -907,33 +903,49 @@ document.getElementById("time").style.display="none";
 }
     }
     }
+    function acAll(id)  //change siren action....................
+   {
+    id=document.getElementById(id);
+    if (!id.checked) {
+        document.getElementById('popup').style.display = 'block';
+        document.getElementById("overlay").style.display = "block";
+        id1Value='S_Ac';
+    }
+    else if(id.checked)
+    {
+      for (var i = 0; i < 4; i++) {
+  
+       document.getElementById(('s_'+ device_id[i])).style.display = "inline"; 
+       document.getElementById(('unm_'+ device_id[i])).style.display = "none";
+ }
+    }
+  
 
+}
 
 function actionClose(id1,element){
 
-        document.getElementById('popup').style.display = 'block';
-        document.getElementById("overlay").style.display = "block";
-    
-
-    
+   document.getElementById('popup').style.display = 'block';
+   document.getElementById("overlay").style.display = "block";
     id1Value=id1;
     idelement=element;
   }
-document.getElementById('yesButton').addEventListener('click', function() {
+    document.getElementById('yesButton').addEventListener('click', function() {
  
     document.getElementById('popup').style.display = 'none';
     document.getElementById("overlay").style.display = "none";
 
-    if (id1Value != 'all') {  // individual disarm
+    if (id1Value != 'S_Ac') {  // individual disarm
         document.getElementById(id1Value).style.display = "none"; 
         document.getElementById(idelement).style.display = "inline"; 
     }
-    if(id1Value === 'all')// siren all disarm
-   {
-    for (var i = 1; i < 5; i++) {
+    
+    if(id1Value === 'S_Ac')// siren all disarm
+    {
+    for (var i = 0; i < 4; i++) {
   
-      document.getElementById(('s' + i)).style.display = "none"; 
-      document.getElementById(('m' + i)).style.display = "inline";
+      document.getElementById(('s_'+ device_id[i])).style.display = "none"; 
+      document.getElementById(('unm_'+ device_id[i])).style.display = "inline";
      }
     }
 
@@ -945,34 +957,9 @@ document.getElementById('noButton').addEventListener('click', function() {
 
     document.getElementById('popup').style.display = 'none';
     document.getElementById("overlay").style.display = "none";
+    document.getElementById(id1Value).checked = true;
 
 });
-
-function acAll(id)  //arm all siren 
-{
-
-    var checkbox = document.getElementById(id)
-    if (!checkbox.checked) {
-        document.getElementById('popup').style.display = 'block';
-        document.getElementById("overlay").style.display = "block";
-
-        id1Value='all';
-    }
-    else if(checkbox.checked)
-    {
-        for (var i = 1; i < 5; i++) {
-  
-    document.getElementById(('s' + i)).style.display = "inline"; 
-    document.getElementById(('m' + i)).style.display = "none";
-     }
-
-    }
-
-}
-
-
-
-
 
 document.getElementById('S_Dis').addEventListener('change', function() {
  var topic=publish_topic+"inching/set/1"
