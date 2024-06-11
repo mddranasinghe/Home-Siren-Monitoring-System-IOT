@@ -215,7 +215,7 @@ border-radius: 0px 0px 20px 0px;
 .signal-bars {display: flex; margin: 2px; }
  .bar {width: 3px;margin-right: 1px;background-color: #ccc;}
   
- #s1,#s2,#s3,#s4{
+ .s,#s2,#s3,#s4{
     position: absolute;
     top: 40%; 
     left: 50%;
@@ -228,7 +228,7 @@ border-radius: 0px 0px 20px 0px;
   }
 
 
-#sT1,#sT2,#sT3,#sT4{
+.sT,#sT2,#sT3,#sT4{
     position: absolute;
     top: 40%; 
     left: 50%;
@@ -270,7 +270,7 @@ border-radius: 0px 0px 20px 0px;
   to {opacity: .2;}
 }
 
-#m1,#m2,#m3,#m4
+.un_m,#m2,#m3,#m4
 {
    position: absolute;
    width: 6.5vw; 
@@ -331,7 +331,10 @@ border-radius: 0px 0px 20px 0px;
 
 #trigger_All{  box-shadow: 0.5px 0.5px 3px 0.5px gray;width: 48%; height: 100px; float: left; }
 #reset_All{ box-shadow: 0.5px 0.5px 3px 0.5px gray; width: 48%; height: 100px;  box-shadow: 0.5px 0.5px 3px 0.5px gray; float: right; }
-    </style>
+.trigger_one{width: 44%; height: 25px;   border-radius: 4px;float: left; }
+.reset_one{width: 44%; height: 25px;   border-radius: 4px;float: right;}
+   
+   </style>
 </head>
 <body>
     <table style="width: 100%;"  id="div1">
@@ -394,76 +397,33 @@ border-radius: 0px 0px 20px 0px;
 
 
    
-    <div class="container_main"id="div3"  >
+  <div class="container_main"id="div3"  >
    
     <div class="container">
         <img id="image" src="../resources\image\siren\i.jpg">
-        <div class="siren1">
-            <svg id='s1' onclick="actionClose('s1','m1')">
-                <use xlink:href="#alarm-icon"></use>
-            </svg>
-            <svg id='sT1'  onclick="actionClose('sT1','m1')">
-              <use xlink:href="#alarm-icon"></use>
-          </svg>
-            <img src="../resources\image\siren\unm.svg"  id="m1">
-        
-            <div class="dot" id="dot_16351370-8a80f94dffbc">
-              <div style="left:-8.5vw; top:-16vw; font-size: 2.5vw;position: absolute;"><p>Rear&nbsp;Left</p></div>
 
-            </div>
-    
-        </div>
-           
-            <div  class="siren2">
-                <svg id='s2'  onclick="actionClose('s2','m2')">
-                    <use xlink:href="#alarm-icon"></use>
-                </svg>
-                <svg id='sT2'  onclick="actionClose('s2','m2')">
-                  <use xlink:href="#alarm-icon"></use>
-              </svg>
-                <img src="../resources\image\siren\unm.svg" id="m2">
-                <div class="dot" id="dot_16334980-8440f94dffbc">
 
-                  <div style="left:-8.5vw; top:1vw; font-size: 2.5vw;position: absolute;"><p>Front&nbsp;Left</p></div>
+       <div class="siren1" id="sirenbox_16351370-8a80f94dffbc">
+         <div style="left:.5vw; top:-6vw; font-size: 2.5vw;position: absolute;"><p>Rear&nbsp;Left</p></div>
+       </div>
 
-                </div>
-            </div>
-   
-
-            <div  class="siren3">
-                <svg id='s3' onclick="actionClose('s3','m3')">
-                    <use xlink:href="#alarm-icon"></use>
-                </svg>
-                <svg id='sT3' onclick="actionClose('sT3','m3')">
-                  <use xlink:href="#alarm-icon"></use>            
-              </svg>
-                <img src="../resources\image\siren\unm.svg" id="m3">
-                <div class="dot" id="dot_16337445-254af94dffbc">
-                  <div style="left:-8.5vw; top:1vw; font-size: 2.5vw;position: absolute;"><p>Front&nbsp;Right</p></div>
-
-                </div>
-  
-            </div>
-       
-                <div class="siren4">
-                    <svg id='s4' onclick="actionClose('s4','m4')">
-                        <use xlink:href="#alarm-icon"></use>
-                    </svg>
-                    <svg id='sT4' onclick="actionClose('sT4','m4')">
-                      <use xlink:href="#alarm-icon"></use>
-                  </svg>
-                    <img src="../resources\image\siren\unm.svg" id="m4">
-                    <div class="dot" id="dot_16336187-3b45f94dffbc">
-                      <div style="left:-8.5vw; top:1vw; font-size: 2.5vw;position: absolute;"><p>Rear&nbsp;Right</p></div>
-
-                    </div>
-                  
-                </div>
+       <div  class="siren2" id="sirenbox_16334980-8440f94dffbc">
+         <div style="left:.5vw; top:10.5vw; font-size: 2.5vw;position: absolute;"><p>Front&nbsp;Left</p></div>
+       </div>
+     
+      <div  class="siren3" id="sirenbox_16337445-254af94dffbc">
+        <div style="left:.5vw; top:10.5vw; font-size: 2.5vw;position: absolute;"><p>Front&nbsp;Right</p></div>
+      </div>
+      
+      <div class="siren4" id="sirenbox_16336187-3b45f94dffbc">
+        <div style="left:.5vw; top:10.5vw; font-size: 2.5vw;position: absolute;"><p>Rear&nbsp;Right</p></div>
+      </div>
     
               
-            </div>
+    </div>
             <div id="overlay3"></div>
-          </div>
+                
+  </div>
 <br>
 
 
@@ -587,6 +547,7 @@ companyID="node", deviceType="bsa",deviceID="8983514-da13896f6480",
 //publish_topic=companyID+"/"+deviceType+"/"+"b2n/"+deviceID+"/",// publish topic
 publish_topic=companyID+"/"+deviceType+"/"+"b2n/homeCorners/",// publish topic
 //subTopic = companyID+"/"+deviceType+"/"+"+/"+"+"+"/+", // subscribe topic
+publish_topicSW=companyID+"/"+deviceType+"/b2n/",// publish topic
 
  device_id = [
   '16351370-8a80f94dffbc',
@@ -608,14 +569,36 @@ subTopic4 = companyID+"/"+deviceType+"/"+"+/"+device_id[3]+"/+",// subscribe top
 */
  device_name = [
 
+' Rear Left Siren',
 ' Front Left Siren',
-' Front Right Siren',
-'Rear Left Siren',
+'Front Right Siren',
 'Rear Right Siren'
 ],
 
  container = document.getElementById('box'),
  numCopies = device_id.length;
+
+  
+  icons = (index) => `
+      <svg  class='s' id="s_${index}" onclick="actionClose('s_${index}','unm_${index}')">
+                <use xlink:href="#alarm-icon"></use>
+            </svg>
+            <svg class='sT' id="sT_${index}">
+              <use xlink:href="#alarm-icon"></use>
+          </svg>
+            <img src="../resources/image/siren/unm.svg"  class="un_m" id="unm_${index}">
+        
+            <div class="dot" id="dot_${index}">
+            </div>
+    `;
+
+
+    for (let i = 0; i < numCopies; i++) {
+      const template = icons(device_id[i]);
+      document.getElementById('sirenbox_'+device_id[i]).insertAdjacentHTML('beforeend', template);
+      console.log(device_id[i]);
+    }
+
   
     const generateTemplate = (index,device_name) => `
     <small style="color:gray" id="device_name"><b>${device_name}</b></small>
@@ -627,7 +610,7 @@ subTopic4 = companyID+"/"+deviceType+"/"+"+/"+device_id[3]+"/+",// subscribe top
             <p style="font-size: 13px; color:#7BDD0A; display: none;" id="online_${index}"> online </p></td>
            
             </div></div>
-            
+
          </div>
          <div class="status_box">
            <div class="topic"><p>Signal Strength </p></div>
@@ -642,6 +625,13 @@ subTopic4 = companyID+"/"+deviceType+"/"+"+/"+device_id[3]+"/+",// subscribe top
            <div class="option">  <div class="toggle">
              <p id="up_${index}"style=font-size:13px>--</p>
             </div></div>
+         </div>
+               
+         <div style="padding:15px">
+           <button class="trigger_one"id="${index}" onClick=triggerOne('${index}')>Trigger</button>
+           <button class="reset_one" id="R_${index}" onClick=resetOne('${index}')>reset</button>
+           <div style="clear: both;"></div>
+
          </div>
  </div>
 <br>
@@ -781,6 +771,15 @@ function triggerAll()// trigger all sirens
   sendCommandToDevice(publish_topic+"sw/set",'1');
 }
 
+function resetOne(id)// reset all sirens 
+{
+  sendCommandToDevice(publish_topicSW+id+"/sw/set",'0');
+}
+function triggerOne(id)// trigger all sirens 
+{
+  sendCommandToDevice(publish_topicSW+id+"/sw/set",'1');
+}
+
 
 function displayFunction(payload,topic)
 {
@@ -839,6 +838,23 @@ document.getElementById('signal_'+topicsArray[3]).innerHTML='&nbsp'+d2+'%';
 }
 
 
+
+
+if(payload['sw'] == 1 && payload['stat'] == 'online') 
+{
+  document.getElementById('sT_'+topicsArray[3]).style.display = 'inline';
+  document.getElementById('s_'+topicsArray[3]).style.display = 'none';
+
+}
+else if(payload['sw'] == 0){
+
+  document.getElementById('sT_'+topicsArray[3]).style.display = 'none';
+  document.getElementById('s_'+topicsArray[3]).style.display = 'inline';
+
+
+}
+
+
 updateSignalStrength(payload['rssi'],payload['stat']);//rssi
 
 if( payload.inching[0] === 1  ){
@@ -854,30 +870,7 @@ document.getElementById("time").style.display="none";
 }
 
 
-if( payload['sw'] == 1 )
-{
-  document.getElementById('reset_sirens').style.display = "nonee";
-  document.getElementById('button_siren').style.display = "none";
 
-  
-  for (var i = 1; i < 5; i++) {
-  
-  document.getElementById(('s' + i)).style.display = "none"; 
-  document.getElementById(('sT' + i)).style.display = "inline";
-  
-}
-
-}
-if( payload['sw'] == 0 )
-{
-  for (var i = 1; i < 5; i++) {
-  
-  document.getElementById(('s' + i)).style.display = "inline"; 
-  document.getElementById(('sT' + i)).style.display = "none";
-}
-document.getElementById('reset_sirens').style.display = "none";
-document.getElementById('button_siren').style.display = "none";
-}
 
 }
 
