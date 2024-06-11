@@ -30,7 +30,7 @@
             border-radius: 2vw;
             border-width: .5vw;
             border-color: gray;
-
+            display:none;
             transform: translateX(-50%);
 
         }
@@ -41,7 +41,7 @@
             border-radius: 2vw;
             border-width: .5vw;
             border-color: gray;
-
+             display:none;
             transform: translateX(-50%);
        
         }
@@ -51,6 +51,7 @@
             border-width: .5vw;
             border-color: gray;
             transform: translateX(-50%);
+            display:none;
       
         }
 
@@ -60,6 +61,7 @@
             border-width: .5vw;
             border-color: gray;
             transform: translateX(-50%);
+            display:none;
          
         }
 
@@ -294,7 +296,7 @@ border-radius: 0px 0px 20px 0px;
          border-radius: 2vw;
          border-width: .5vw;
          border-color: gray;
-
+        
          transform: translateX(-50%);
 
      }
@@ -331,8 +333,8 @@ border-radius: 0px 0px 20px 0px;
 
 #trigger_All{  box-shadow: 0.5px 0.5px 3px 0.5px gray;width: 48%; height: 100px; float: left; }
 #reset_All{ box-shadow: 0.5px 0.5px 3px 0.5px gray; width: 48%; height: 100px;  box-shadow: 0.5px 0.5px 3px 0.5px gray; float: right; }
-.trigger_one{width: 44%; height: 25px;   border-radius: 4px;float: left; }
-.reset_one{width: 44%; height: 25px;   border-radius: 4px;float: right;}
+.trigger_one{width: 44%; height: 25px;   border-radius: 4px;float: left; border:none;box-shadow: 0.5px 0.5px 3px 0.5px ;color:black}
+.reset_one{width: 44%; height: 25px;   border-radius: 4px;float: right; border:none;box-shadow: 0.5px 0.5px 3px 0.5px;color:black}
    
    </style>
 </head>
@@ -403,19 +405,19 @@ border-radius: 0px 0px 20px 0px;
         <img id="image" src="../resources\image\siren\i.jpg">
 
 
-       <div class="siren1" id="sirenbox_16351370-8a80f94dffbc">
+       <div class="siren1" id="siren_0">
          <div style="left:.5vw; top:-6.5vw; font-size: 2.5vw;position: absolute;"><p>Rear&nbsp;Left</p></div>
        </div>
 
-       <div  class="siren2" id="sirenbox_16334980-8440f94dffbc">
+       <div  class="siren2" id="siren_1">
          <div style="left:.5vw; top:10.5vw; font-size: 2.5vw;position: absolute;"><p>Front&nbsp;Left</p></div>
        </div>
      
-      <div  class="siren3" id="sirenbox_16337445-254af94dffbc">
+      <div  class="siren3" id="siren_2">
         <div style="left:.5vw; top:10.5vw; font-size: 2.5vw;position: absolute;"><p>Front&nbsp;Right</p></div>
       </div>
       
-      <div class="siren4" id="sirenbox_16336187-3b45f94dffbc">
+      <div class="siren4" id="siren_3">
         <div style="left:.5vw; top:10.5vw; font-size: 2.5vw;position: absolute;"><p>Rear&nbsp;Right</p></div>
       </div>
     
@@ -430,7 +432,7 @@ border-radius: 0px 0px 20px 0px;
         <div style="width: 95%; margin: 0 auto;" id="div4">
 
 
-          <div  id="trigger_All" onclick="triggerAll('trigger_All')">
+          <div  id="trigger_All" onclick="triggerAll('trigger_All')" ontouchstart="addHoverClass('trigger_All')" ontouchend="removeHoverClass('trigger_All')">
           <div style="padding: 10px;">
             <img src ="../resources\image\siren\triggr.png" style="width: 35px;"><br>
 
@@ -440,7 +442,7 @@ border-radius: 0px 0px 20px 0px;
           </div>
           </div>
 
-          <div id="reset_All" onclick="resetAll('reset_All')">
+          <div id="reset_All" onclick="resetAll('reset_All')" ontouchstart="addHoverClass('reset_All')" ontouchend="removeHoverClass('reset_All')" >
           <div style="padding: 10px;">
             <img src ="../resources\image\siren\reset1.png" style="width: 35px;"><br>
             <small ><b>Reset All Sirens </b></small><br>
@@ -549,12 +551,7 @@ publish_topic=companyID+"/"+deviceType+"/"+"b2n/homeCorners/",// publish topic
 //subTopic = companyID+"/"+deviceType+"/"+"+/"+"+"+"/+", // subscribe topic
 publish_topicSW=companyID+"/"+deviceType+"/b2n/",// publish topic
 
- device_id = [
-  '16351370-8a80f94dffbc',
-  '16334980-8440f94dffbc',
-  '16337445-254af94dffbc',
-  '16336187-3b45f94dffbc'
-],
+ device_id = ['16351370-8a80f94dffbc','16334980-8440f94dffbc', '16337445-254af94dffbc', '16336187-3b45f94dffbc'],
 
 subTopic1 = companyID+"/"+deviceType+"/"+"+/"+device_id[0]+"/+",// subscribe topic
 subTopic2 = companyID+"/"+deviceType+"/"+"+/"+device_id[1]+"/+",// subscribe topic
@@ -594,9 +591,14 @@ subTopic4 = companyID+"/"+deviceType+"/"+"+/"+device_id[3]+"/+",// subscribe top
 
 
     for (let i = 0; i < numCopies; i++) {
-      const template = icons(device_id[i]);
-      document.getElementById('sirenbox_'+device_id[i]).insertAdjacentHTML('beforeend', template);
-      console.log(device_id[i]);
+      if (device_id[i] != null) {
+          const template = icons(device_id[i]);
+          document.getElementById('siren_'+i).insertAdjacentHTML('beforeend', template);
+          document.getElementById('siren_'+i).style.display='block'
+          console.log(device_id[i]);
+           continue;
+            }
+     
     }
 
   
@@ -628,8 +630,8 @@ subTopic4 = companyID+"/"+deviceType+"/"+"+/"+device_id[3]+"/+",// subscribe top
          </div>
                
          <div style="padding:15px">
-           <button class="trigger_one"id="${index}" onClick=triggerOne('${index}')>Trigger</button>
-           <button class="reset_one" id="R_${index}" onClick=resetOne('${index}')>reset</button>
+           <button class="trigger_one" id="${index}" onClick=triggerOne('${index}')>Trigger</button>
+           <button class="reset_one"  id="R_${index}" onClick=resetOne('${index}')>reset</button>
            <div style="clear: both;"></div>
 
          </div>
@@ -639,11 +641,12 @@ subTopic4 = companyID+"/"+deviceType+"/"+"+/"+device_id[3]+"/+",// subscribe top
     `;
 
     for (let i = 0; i < numCopies; i++) {
+      if (device_id[i] != null) {
       const template = generateTemplate(device_id[i], device_name[i]);
         container.insertAdjacentHTML('beforeend', template);
-        
           console.log(device_id[i]);
-        
+          continue;
+        }
     }
 
 
@@ -932,16 +935,7 @@ document.getElementById('yesButton').addEventListener('click', function() {
      }
     }
 
-    if (id1Value ==='button_siren') // reset button click siren set defualt stat 
-    {
-      for (var i = 1; i < 5; i++) {
-  
-      sendCommandToDevice(publish_topic+"sw/set",'0');
-      document.getElementById(('s' + i)).style.display = "inline"; 
-      document.getElementById(('sT' + i)).style.display = "none";
-
-     }
-    }
+      
   openPopup();
 });
 
@@ -1003,7 +997,7 @@ document.getElementById('S_Dis').addEventListener('change', function() {
 
 
   function addHoverClass(id) {
-    document.getElementById(id).style.opacity=0.5 ;
+    document.getElementById(id).style.opacity=0.3 ;
     document.getElementById(id).style.backgroundColor= '#EEEEEE';
 }
 
