@@ -631,8 +631,8 @@ subTopic4 = companyID+"/"+deviceType+"/"+"+/"+device_id[3]+"/+",// subscribe top
          </div>
                
          <div style="padding:15px">
-           <button class="trigger_one" id="${index}" onClick=triggerOne('${index}')>Trigger</button>
-           <button class="reset_one"  id="R_${index}" onClick=resetOne('${index}')>reset</button>
+           <button class="trigger_one" id="${index}" onClick="triggerOne('${index}')" ontouchstart="addHoverClass('${index}')" ontouchend="removeHoverClass('${index}')">Trigger</button>
+           <button class="reset_one"  id="R_${index}" onClick="resetOne('${index}')" ontouchstart="addHoverClass('R_${index}')" ontouchend="removeHoverClass('R_${index}')">Reset</button>
            <div style="clear: both;"></div>
 
          </div>
@@ -739,6 +739,8 @@ function onlinestatus()
   document.getElementById("offline").style.display="none";
   document.getElementById("overlay2").style.display="none";
   document.getElementById("overlay3").style.display="none";
+ // document.getElementById(topicsArray[3]).disabled = false;
+  //document.getElementById('R_'+topicsArray[3]).disabled = false;
 
 
 }
@@ -748,6 +750,10 @@ function offlinestatus(stat)
     
     document.getElementById("offline").style.color="#FF3827";
     document.getElementById('offline_'+topicsArray[3]).style.color="#FF3827";
+    document.getElementById(topicsArray[3]).disabled = true;
+    document.getElementById('R_'+topicsArray[3]).disabled = true;
+
+
 }
 
   
@@ -838,7 +844,6 @@ var d2= d*2;
 d2=100-d2;
 document.getElementById('signal_'+topicsArray[3]).innerHTML='&nbsp'+d2+'%';
 
-
 }
 
 
@@ -854,7 +859,6 @@ else if(payload['sw'] == 0){
 
   document.getElementById('sT_'+topicsArray[3]).style.display = 'none';
   document.getElementById('s_'+topicsArray[3]).style.display = 'inline';
-
 
 }
 
@@ -872,9 +876,6 @@ document.getElementById('S_Dis').checked = false;
 document.getElementById("time").style.display="none";
  document.getElementById("label_timer_time").style.display="none";
 }
-
-
-
 
 }
 
