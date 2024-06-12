@@ -334,8 +334,8 @@ border-radius: 0px 0px 20px 0px;
 
 #trigger_All{  box-shadow: 0.5px 0.5px 3px 0.5px gray;width: 48%; height: 100px; float: left; }
 #reset_All{ box-shadow: 0.5px 0.5px 3px 0.5px gray; width: 48%; height: 100px;  box-shadow: 0.5px 0.5px 3px 0.5px gray; float: right; }
-.trigger_one{width: 44%; height: 25px;   border-radius: 4px;float: left; border:none;box-shadow: 0.5px 0.5px 3px 0.5px gray;color:blue}
-.reset_one{width: 44%; height: 25px;   border-radius: 4px;float: right; border:none;box-shadow: 0.5px 0.5px 3px 0.5px gray; color:red
+.trigger_one{width: 44%; height: 25px;   border-radius: 4px;float: left; border:none;box-shadow: 0.5px 0.5px 3px 0.5px gray;color:blue;background-color: white;}
+.reset_one{width: 44%; height: 25px;   border-radius: 4px;float: right; border:none;box-shadow: 0.5px 0.5px 3px 0.5px gray; color:red;background-color: white;
 }
    
    </style>
@@ -434,7 +434,7 @@ border-radius: 0px 0px 20px 0px;
         <div style="width: 95%; margin: 0 auto;" id="div4">
 
 
-          <div  id="trigger_All" onclick="triggerAll('trigger_All')" ontouchstart="addHoverClass('trigger_All')" ontouchend="removeHoverClass('trigger_All')">
+          <div  id="trigger_All" onclick="trigger_Reset_fun('trigger_All')" ontouchstart="addHoverClass('trigger_All')" ontouchend="removeHoverClass('trigger_All')">
           <div style="padding: 10px;">
             <img src ="../resources\image\siren\triggr.png" style="width: 35px;"><br>
 
@@ -444,7 +444,7 @@ border-radius: 0px 0px 20px 0px;
           </div>
           </div>
 
-          <div id="reset_All" onclick="resetAll('reset_All')" ontouchstart="addHoverClass('reset_All')" ontouchend="removeHoverClass('reset_All')" >
+          <div id="reset_All" onclick="trigger_Reset_fun('reset_All')" ontouchstart="addHoverClass('reset_All')" ontouchend="removeHoverClass('reset_All')" >
           <div style="padding: 10px;">
             <img src ="../resources\image\siren\reset1.png" style="width: 35px;"><br>
             <small ><b>Reset All Sirens </b></small><br>
@@ -520,7 +520,7 @@ border-radius: 0px 0px 20px 0px;
         
       <div id="popup" class="popup">
         <div style="padding: 20px;">   <div class="popup-content">
-          <p>Are you sure you want to disarmed this siren?</p>  </div></div>
+          <p>Are you sure you want to performe  this action?</p>  </div></div>
       <div class="pop_button">
           <div id="noButton" ontouchstart="addHoverClass('noButton')" ontouchend="removeHoverClass('noButton')"><p>No</p></div>
             <div id="yesButton" ontouchstart="addHoverClass('yesButton')" ontouchend="removeHoverClass('yesButton')"><p>Yes</p></div></div>
@@ -541,7 +541,7 @@ border-radius: 0px 0px 20px 0px;
     <script>
 //var s='node/bsa/n2b/8983514-da13896f6480/inching';
 //var all="node/bsa/b2n/allFourDevices/";
-var id1Value,id1,payload,topic, timer,stat,d=0,bar,value,timeSec,topicsArray,statValue=0,s=0,
+var id1Value,id1,payload,topic, timer,stat,d=0,bar,value,timeSec,topicsArray,statValue=0,s=0,triggerReset,
 companyID="node", deviceType="bsa",deviceID="8983514-da13896f6480",
 //publish_topic=companyID+"/"+deviceType+"/"+"b2n/"+deviceID+"/",// publish topic
 publish_topic=companyID+"/"+deviceType+"/"+"b2n/homeCorners/",// publish topic
@@ -562,7 +562,6 @@ subTopic4 = companyID+"/"+deviceType+"/"+"+/"+device_id[3]+"/+",// subscribe top
   '8955008-80a4886f6480'
 */
  device_name = [
-
 ' Rear Left Siren',
 ' Front Left Siren',
 'Front Right Siren',
@@ -903,6 +902,13 @@ document.getElementById("time").style.display="none";
 }
     }
     }
+  function trigger_Reset_fun(id)
+  {
+    document.getElementById('popup').style.display = 'block';
+    document.getElementById("overlay").style.display = "block";
+    triggerReset=id;
+  }
+
     function acAll(id)  //change siren action....................
    {
     id=document.getElementById(id);
@@ -922,7 +928,6 @@ document.getElementById("time").style.display="none";
   
 
 }
-
 function actionClose(id1,element){
 
    document.getElementById('popup').style.display = 'block';
@@ -931,9 +936,22 @@ function actionClose(id1,element){
     idelement=element;
   }
     document.getElementById('yesButton').addEventListener('click', function() {
- 
+ try{
     document.getElementById('popup').style.display = 'none';
     document.getElementById("overlay").style.display = "none";
+    
+    if(triggerReset == 'trigger_All')
+    {
+      triggerAll();
+
+    }
+
+        
+    if(triggerReset == 'reset_All')
+    {
+      resetAll();
+      
+    }
 
     if (id1Value != 'S_Ac') {  // individual disarm
         document.getElementById(id1Value).style.display = "none"; 
@@ -951,13 +969,16 @@ function actionClose(id1,element){
 
       
   openPopup();
+ }
+ catch{}
 });
 
 document.getElementById('noButton').addEventListener('click', function() {
-
+try{
     document.getElementById('popup').style.display = 'none';
     document.getElementById("overlay").style.display = "none";
     document.getElementById(id1Value).checked = true;
+}catch{}
 
 });
 
