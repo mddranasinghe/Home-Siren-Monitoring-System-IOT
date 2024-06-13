@@ -825,6 +825,8 @@ switch (stat)
     console.log(sum_stat)
  
   if(sum_stat == device_id.length){  
+       document.getElementById("online").style.display="none";
+       document.getElementById("offline").style.display="inline";
          document.getElementById("offline").style.color="#FF3827";
 
          for (let i = 1; i <= 4; i++) {
