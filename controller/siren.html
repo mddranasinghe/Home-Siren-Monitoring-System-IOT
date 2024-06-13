@@ -760,8 +760,6 @@ function offlinestatus(stat_)
   for (let i = 1; i <= 4; i++) {
     document.getElementById("overlay"+i).style.display="block";
         }
- 
-  
 
 for(var x = 0; x < bar.length; x++)
 {
@@ -832,6 +830,12 @@ switch (stat)
          for (let i = 1; i <= 4; i++) {
           document.getElementById("overlay"+i).style.display="block";
         }
+
+         
+        for(var x = 0; x < bar.length; x++)
+       {
+       bar[x].style.backgroundColor = "#ccc";
+       }
    }
   
 
