@@ -149,7 +149,7 @@ border-radius: 0px 0px 20px 0px;
 
 
 
-.Ac,.Al,.moresett,.moreset_container{ width:100%;box-shadow: 0.5px 0.5px 3px 0.5px gray; border-radius: 3px 3px; position: relative;}
+.Ac,.Al,.moresett,.moreset_container{ width:100%;box-shadow: 0.5px 0.5px 3px 0.5px gray; border-radius: 3px 3px; position: relative; }
 .status_box {
         padding-left: 20px;
         padding-right: 20px;
@@ -189,7 +189,7 @@ border-radius: 0px 0px 20px 0px;
     color:black;
 }
 
-#overlay2,#overlay3 {
+#overlay1,#overlay2,#overlay3,#overlay4{
   /*   position: fixed;*/
      display:none;
      width: 100%;
@@ -332,8 +332,8 @@ border-radius: 0px 0px 20px 0px;
      }
     }
 
-#trigger_All{  box-shadow: 0.5px 0.5px 3px 0.5px gray;width: 48%; height: 100px; float: left; }
-#reset_All{ box-shadow: 0.5px 0.5px 3px 0.5px gray; width: 48%; height: 100px;  box-shadow: 0.5px 0.5px 3px 0.5px gray; float: right; }
+#trigger_All{  box-shadow: 0.5px 0.5px 3px 0.5px gray;width: 48%; height: 100px; float: left; position: relative; z-index: 9990; }
+#reset_All{ box-shadow: 0.5px 0.5px 3px 0.5px gray; width: 48%; height: 100px;  box-shadow: 0.5px 0.5px 3px 0.5px gray; float: right; position: relative; z-index: 9990; }
 .trigger_one{width: 44%; height: 25px;   border-radius: 4px;float: left; border:none;box-shadow: 0.5px 0.5px 3px 0.5px gray;color:blue;background-color: white;}
 .reset_one{width: 44%; height: 25px;   border-radius: 4px;float: right; border:none;box-shadow: 0.5px 0.5px 3px 0.5px gray; color:red;background-color: white;
 }
@@ -425,8 +425,8 @@ border-radius: 0px 0px 20px 0px;
     
               
     </div>
-            <div id="overlay3"></div>
-                
+            <div id="overlay1"></div>
+            
   </div>
 <br>
 
@@ -434,22 +434,24 @@ border-radius: 0px 0px 20px 0px;
         <div style="width: 95%; margin: 0 auto;" id="div4">
 
 
-          <div  id="trigger_All" onclick="trigger_Reset_fun('trigger_All')" ontouchstart="addHoverClass('trigger_All')" ontouchend="removeHoverClass('trigger_All')">
-          <div style="padding: 10px;">
+          <div  id="trigger_All"  >
+          <div style="padding: 10px;" onclick="trigger_Reset_fun('trigger_All')" ontouchstart="addHoverClass('trigger_All')" ontouchend="removeHoverClass('trigger_All')">
             <img src ="../resources\image\siren\triggr.png" style="width: 35px;"><br>
 
             <small ><b>Trigger All Sirens </b></small><br>
             <small>Home</small>
             
           </div>
+          <div id="overlay2"></div>
           </div>
 
-          <div id="reset_All" onclick="trigger_Reset_fun('reset_All')" ontouchstart="addHoverClass('reset_All')" ontouchend="removeHoverClass('reset_All')" >
-          <div style="padding: 10px;">
+          <div id="reset_All"  >
+          <div style="padding: 10px;" onclick="trigger_Reset_fun('reset_All')" ontouchstart="addHoverClass('reset_All')" ontouchend="removeHoverClass('reset_All')">
             <img src ="../resources\image\siren\reset1.png" style="width: 35px;"><br>
             <small ><b>Reset All Sirens </b></small><br>
             <small>Home</small>
           </div>
+          <div id="overlay3"></div>
           </div>
 
           <div style="clear: both;"></div>
@@ -486,7 +488,7 @@ border-radius: 0px 0px 20px 0px;
                     </select><label for="time" id="time"></label></div></div>
                </div>
 
-               <div id="overlay2"></div>
+               <div id="overlay4"></div>
 
          </div>
             
@@ -541,7 +543,7 @@ border-radius: 0px 0px 20px 0px;
     <script>
 //var s='node/bsa/n2b/8983514-da13896f6480/inching';
 //var all="node/bsa/b2n/allFourDevices/";
-var id1Value,id1,payload,topic, timer,stat,d=0,bar,value,timeSec,topicsArray,statValue=0,s=0,triggerReset,
+var id1Value,id1,payload,topic, timer,stat,d=0,bar,value,timeSec,topicsArray,statValue=0,s=0,triggerReset,stat1=0,stat2=0,stat3=0,stat4=0,sum_stat=0,
 companyID="node", deviceType="bsa",deviceID="8983514-da13896f6480",
 //publish_topic=companyID+"/"+deviceType+"/"+"b2n/"+deviceID+"/",// publish topic
 publish_topic=companyID+"/"+deviceType+"/"+"b2n/homeCorners/",// publish topic
@@ -554,6 +556,7 @@ subTopic1 = companyID+"/"+deviceType+"/"+"+/"+device_id[0]+"/+",// subscribe top
 subTopic2 = companyID+"/"+deviceType+"/"+"+/"+device_id[1]+"/+",// subscribe topic
 subTopic3 = companyID+"/"+deviceType+"/"+"+/"+device_id[2]+"/+",// subscribe topic
 subTopic4 = companyID+"/"+deviceType+"/"+"+/"+device_id[3]+"/+",// subscribe topic
+//subTopic1 = companyID+"/"+deviceType+"/"+"+/"+"+"+"/+",// subscribe topic
 
 /*
  '14028845-2d10d6e768e8',
@@ -587,6 +590,7 @@ subTopic4 = companyID+"/"+deviceType+"/"+"+/"+device_id[3]+"/+",// subscribe top
 
 
     for (let i = 0; i < numCopies; i++) {
+      try{
       if (device_id[i] != null) {
           const template = icons(device_id[i]);
           document.getElementById('siren_'+i).insertAdjacentHTML('beforeend', template);
@@ -594,6 +598,7 @@ subTopic4 = companyID+"/"+deviceType+"/"+"+/"+device_id[3]+"/+",// subscribe top
           console.log(device_id[i]);
            continue;
             }
+      }catch{}
      
     }
 
@@ -637,12 +642,14 @@ subTopic4 = companyID+"/"+deviceType+"/"+"+/"+device_id[3]+"/+",// subscribe top
     `;
 
     for (let i = 0; i < numCopies; i++) {
+      try{
       if (device_id[i] != null) {
       const template = generateTemplate(device_id[i], device_name[i]);
         container.insertAdjacentHTML('beforeend', template);
           console.log(device_id[i]);
           continue;
         }
+      }catch{}
     }
 
 
@@ -676,6 +683,7 @@ client.onMessageArrived = onMessageArrived;
 }catch{}}
 
 function onConnect() {
+try{
     console.log("onConnect");    
       client.subscribe(subTopic1);
       client.subscribe(subTopic2);
@@ -686,7 +694,8 @@ function onConnect() {
 
     //  client.subscribe(s);
     //sendCommandToDevice(publish_topic+"info","read");
-
+}
+catch{}
 }
 
 function sendCommandToDevice(topic,payload) {
@@ -732,10 +741,9 @@ function onlinestatus()
 {
   document.getElementById("online").style.display="inline";
   document.getElementById("offline").style.display="none";
-  document.getElementById("overlay2").style.display="none";
-  document.getElementById("overlay3").style.display="none";
- // document.getElementById(topicsArray[3]).disabled = false;
-  //document.getElementById('R_'+topicsArray[3]).disabled = false;
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById("overlay"+i).style.display="none";
+        }
 
 
 }
@@ -751,11 +759,13 @@ function offlinestatus(stat)
 
 }
 
-  
   document.getElementById("online").style.display="none";
   document.getElementById("offline").style.display="inline";
-  document.getElementById("overlay2").style.display="block";
-  document.getElementById("overlay3").style.display="block";
+
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById("overlay"+i).style.display="block";
+        }
+  
 
 
 
@@ -794,26 +804,42 @@ function displayFunction(payload,topic)
   timeSec=payload.inching[1];
 
  // statValue = (payload['stat'] === 'online') ? 1 : (payload['stat'] === 'offline' ?  0 : statValue );
-    statValue = (payload['stat'] === 'offline') ? 1 : 0;
-    s=statValue+s;
+    //statValue = (payload['stat'] === 'offline') ? 1 : 0;
+   // s=statValue+s;
 
-  console.log('ddd -'+ s)
+ // console.log('ddd -'+ s)
 
 switch (stat)
 {
   case "online":
+    sum_stat=0;
     onlinestatus();
     document.getElementById('online_'+topicsArray[3]).style.display = 'inline';
     document.getElementById('offline_'+topicsArray[3]).style.display = 'none';
     document.getElementById('dot_'+topicsArray[3]).style.backgroundColor="#7BDD0A";
+
     break;
   case "offline":
-  offlinestatus(stat);
   document.getElementById('online_'+topicsArray[3]).style.display = 'none';
   document.getElementById('offline_'+topicsArray[3]).style.display = 'inline';
   document.getElementById('dot_'+topicsArray[3]).style.backgroundColor="#FF3827";
+
+  if      (topicsArray[3] == device_id[0]){stat1 = 1;  }
+  else if (topicsArray[3] == device_id[1]) {stat2= 1; }
+  else if (topicsArray[3] == device_id[2]) {stat3 = 1; }
+  else if (topicsArray[3] == device_id[3]) {stat4 = 1; }
+  sum_stat=(stat1+stat2+stat3+stat4);
+  console.log(sum_stat)
+if(sum_stat == device_id.length){  
+
+  offlinestatus(stat);
+
+}
+
     break;
 }
+
+
 
 
 document.getElementById('up_'+topicsArray[3]).innerHTML = formatTime(payload["up"]);// runing time
@@ -1030,10 +1056,10 @@ function openPopup() {
 
   connect();          
   Gosiren();
-  setTimeout(function() {
-  if(stat !== 'online'){
+  /*setTimeout(function() {
+ if(stat !== 'online'){
   offlinestatus('none');}
-   }, 1000);
+   }, 1000);*/
 
 setInterval(connect, 2000);
     </script>
