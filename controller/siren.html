@@ -749,22 +749,18 @@ function onlinestatus()
 }
 function offlinestatus(stat_)
 {
-  if(stat_ === 'offline'){  
-    
-    document.getElementById("offline").style.color="#FF3827";
-    document.getElementById('offline_'+topicsArray[3]).style.color="#FF3827";
-    document.getElementById(topicsArray[3]).disabled = true;
-    document.getElementById('R_'+topicsArray[3]).disabled = true;
+ if(stat_ == 'offline')
+ {
+  document.getElementById("offline").style.color="#FF3827";
 
-
-}
-
-  document.getElementById("online").style.display="none";
-  document.getElementById("offline").style.display="inline";
-
+ }
+    document.getElementById("online").style.display="none";
+    document.getElementById("offline").style.display="inline";
+ 
   for (let i = 1; i <= 4; i++) {
     document.getElementById("overlay"+i).style.display="block";
         }
+ 
   
 
 for(var x = 0; x < bar.length; x++)
@@ -820,13 +816,25 @@ switch (stat)
   else if (topicsArray[3] == device_id[1]) {stat2= 1; }
   else if (topicsArray[3] == device_id[2]) {stat3 = 1; }
   else if (topicsArray[3] == device_id[3]) {stat4 = 1; }
-  sum_stat=(stat1+stat2+stat3+stat4);
-  console.log(sum_stat)
+
+    document.getElementById('offline_'+topicsArray[3]).style.color="#FF3827";
+    document.getElementById(topicsArray[3]).disabled = true;
+    document.getElementById('R_'+topicsArray[3]).disabled = true;
+
+    sum_stat=(stat1+stat2+stat3+stat4);
+    console.log(sum_stat)
+ 
   if(sum_stat == device_id.length){  
+         document.getElementById("offline").style.color="#FF3827";
 
-  offlinestatus('offline');
+         for (let i = 1; i <= 4; i++) {
+          document.getElementById("overlay"+i).style.display="block";
+        }
+   }
+  
 
-}
+ 
+
 
     break;
 }
