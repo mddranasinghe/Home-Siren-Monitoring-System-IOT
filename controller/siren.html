@@ -747,9 +747,9 @@ function onlinestatus()
 
 
 }
-function offlinestatus(stat)
+function offlinestatus(stat_)
 {
-  if(stat === 'offline'){  
+  if(stat_ === 'offline'){  
     
     document.getElementById("offline").style.color="#FF3827";
     document.getElementById('offline_'+topicsArray[3]).style.color="#FF3827";
@@ -766,9 +766,6 @@ function offlinestatus(stat)
     document.getElementById("overlay"+i).style.display="block";
         }
   
-
-
-
 
 for(var x = 0; x < bar.length; x++)
 {
@@ -803,11 +800,6 @@ function displayFunction(payload,topic)
   stat=payload['stat'];
   timeSec=payload.inching[1];
 
- // statValue = (payload['stat'] === 'online') ? 1 : (payload['stat'] === 'offline' ?  0 : statValue );
-    //statValue = (payload['stat'] === 'offline') ? 1 : 0;
-   // s=statValue+s;
-
- // console.log('ddd -'+ s)
 
 switch (stat)
 {
@@ -830,9 +822,9 @@ switch (stat)
   else if (topicsArray[3] == device_id[3]) {stat4 = 1; }
   sum_stat=(stat1+stat2+stat3+stat4);
   console.log(sum_stat)
-if(sum_stat == device_id.length){  
+  if(sum_stat == device_id.length){  
 
-  offlinestatus(stat);
+  offlinestatus('offline');
 
 }
 
